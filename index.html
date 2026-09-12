@@ -2332,24 +2332,6 @@ function checkCaptcha() {
    ALIEN STORYLINE
 ========================================================= */
 
-let alienCaptchaPassed = false;
-let repairStep = 0;
-
-const repairSteps = [
-  "reboot the banana router 🍌",
-  "remove 14 invisible ducks 🦆",
-  "untangle the scrolling algorithm 🌀",
-  "locate Gerald's emergency exit 🦁",
-  "repair the 67 dimension 💀",
-  "teach the WiFi how to behave 📶",
-  "delete the illegal pickle code 🥒",
-  "reinstall the funny algorithm 🤖",
-  "find the missing semicolon ;",
-  "convince the server that cats are real 🐈",
-  "defeat the buffering wheel ⏳",
-  "press the extremely suspicious button 🔴"
-];
-
 function updateStoryButton() {
   const btn = document.getElementById("whatThisButton");
   if (!btn) return;
@@ -2404,9 +2386,9 @@ function checkAgentCaptcha() {
   repairStep = 0;
 
   const log = document.getElementById("repairLog");
-  const progress = document.getElementById("repairProgress");
+  const progress = document.getElementById("repairProgressFill");
   if (log) log.innerHTML = "<p>👽 alien agent connected.</p><p>system status: EXTREMELY BROKEN</p>";
-  if (progress) progress.textContent = `repair 0 / ${repairSteps.length}`;
+  if (progress) progress.style.width = "0%";
 
   const button = document.getElementById("repairButton");
   if (button) {
@@ -2417,13 +2399,13 @@ function checkAgentCaptcha() {
 
 function nextRepairStep() {
   const log = document.getElementById("repairLog");
-  const progress = document.getElementById("repairProgress");
+  const progress = document.getElementById("repairProgressFill");
   if (repairStep < repairSteps.length) {
     const p = document.createElement("p");
     p.textContent = `✓ ${repairSteps[repairStep]}`;
     log.appendChild(p);
     repairStep++;
-    progress.textContent = `repair ${repairStep} / ${repairSteps.length}`;
+    progress.style.width = `${(repairStep / repairSteps.length) * 100}%`;
     if (repairStep === repairSteps.length) {
       setTimeout(finishAlienRepair, 700);
     }
@@ -2434,9 +2416,9 @@ function finishAlienRepair() {
   repairComplete = true;
   localStorage.setItem("scrolltok_repairComplete", "true");
   const log = document.getElementById("repairLog");
-  const progress = document.getElementById("repairProgress");
+  const progress = document.getElementById("repairProgressFill");
   if (log) log.innerHTML += "<p>✅ SYSTEM FIXED. probably.</p><p>👽 alien: you're good to go.</p>";
-  if (progress) progress.textContent = "repair COMPLETE ✅";
+  if (progress) progress.style.width = "100%";
   const button = document.getElementById("repairButton");
   if (button) {
     button.textContent = "return to scrolltok";
@@ -2458,10 +2440,10 @@ function triggerLogoutTrap() {
   document.getElementById("alienScreen").style.display = "flex";
 
   const log = document.getElementById("repairLog");
-  const progress = document.getElementById("repairProgress");
+  const progress = document.getElementById("repairProgressFill");
   const button = document.getElementById("repairButton");
   if (log) log.innerHTML = "<p>⚠️ LOG OUT REQUEST DETECTED.</p><p>👽 CANNOT LOG OUT.</p><p>👽 ...this was a trap.</p>";
-  if (progress) progress.textContent = "SYSTEM ERROR";
+  if (progress) progress.style.width = "100%";
   if (button) button.style.display = "none";
 
   setTimeout(() => {
