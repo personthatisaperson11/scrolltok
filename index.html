@@ -2466,21 +2466,22 @@ document.head.appendChild(animationStyle);
    STARTUP
 ========================================================= */
 
-applyCursedMode();
-updateStoryButton();
-
-
+// Opening the file starts at login. Cursed mode only takes effect
+// after the 67 storyline has actually been triggered.
 if (currentUser && users[currentUser]) {
 
-  document.getElementById(
-    "loginScreen"
-  ).style.display = "none";
+  applyCursedMode();
+  updateStoryButton();
 
-  document.getElementById(
-    "app"
-  ).style.display = "block";
+  document.getElementById("loginScreen").style.display = "none";
+  document.getElementById("app").style.display = "block";
 
   showPage("crazy");
+
+} else {
+
+  document.getElementById("loginScreen").style.display = "flex";
+  document.getElementById("app").style.display = "none";
 
 }
 
