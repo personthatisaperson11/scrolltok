@@ -1,0 +1,1694 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>scrollTok™ 💀</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&display=swap');
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Fredoka", sans-serif;
+  background: #f7f4ff;
+  color: #25213b;
+}
+
+button, input, textarea, select {
+  font-family: inherit;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* LOGIN */
+
+#loginScreen {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background:
+    radial-gradient(circle at 20% 20%, #ffd6ef, transparent 30%),
+    radial-gradient(circle at 80% 80%, #cde7ff, transparent 30%),
+    #f7f4ff;
+}
+
+.loginBox {
+  width: min(430px, 92%);
+  padding: 35px;
+  border-radius: 30px;
+  background: white;
+  box-shadow: 0 20px 60px #342b5930;
+  text-align: center;
+}
+
+.logo {
+  font-size: 42px;
+  font-weight: 700;
+  background: linear-gradient(90deg, #ff4fa3, #8d65ff, #4fb7ff);
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+.loginBox p {
+  color: #77728c;
+}
+
+.input {
+  width: 100%;
+  padding: 14px 16px;
+  margin: 7px 0;
+  border: 2px solid #eeeaf8;
+  border-radius: 15px;
+  outline: none;
+  font-size: 15px;
+}
+
+.input:focus {
+  border-color: #a777ff;
+}
+
+.primary {
+  width: 100%;
+  padding: 14px;
+  margin-top: 10px;
+  border-radius: 15px;
+  color: white;
+  font-weight: 700;
+  font-size: 16px;
+  background: linear-gradient(90deg, #ff4fa3, #8667ff);
+}
+
+.secondary {
+  padding: 10px 15px;
+  border-radius: 13px;
+  background: #eeeaff;
+  color: #514b70;
+  font-weight: 600;
+}
+
+/* APP */
+
+#app {
+  min-height: 100vh;
+}
+
+.topbar {
+  height: 70px;
+  background: white;
+  border-bottom: 1px solid #ebe7f5;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 25px;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+}
+
+.topLogo {
+  font-size: 25px;
+  font-weight: 700;
+  background: linear-gradient(90deg, #ff4fa3, #8068ff);
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+.search {
+  width: 300px;
+  padding: 11px 17px;
+  border-radius: 20px;
+  border: 2px solid #eeeaf8;
+  outline: none;
+  background: #faf9ff;
+}
+
+.topActions {
+  display: flex;
+  gap: 9px;
+}
+
+.iconBtn {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: #f1edff;
+  font-size: 19px;
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: 220px minmax(300px, 650px) 250px;
+  gap: 25px;
+  max-width: 1200px;
+  margin: auto;
+  padding: 25px;
+}
+
+/* SIDEBAR */
+
+.sidebar {
+  position: sticky;
+  top: 95px;
+  height: fit-content;
+}
+
+.navBtn {
+  width: 100%;
+  text-align: left;
+  padding: 14px;
+  border-radius: 15px;
+  background: transparent;
+  font-size: 16px;
+  margin-bottom: 5px;
+  color: #56506f;
+}
+
+.navBtn:hover,
+.navBtn.active {
+  background: #eeeaff;
+  color: #7654e8;
+  font-weight: 700;
+}
+
+.profileMini {
+  margin-top: 20px;
+  padding: 17px;
+  border-radius: 20px;
+  background: white;
+  box-shadow: 0 5px 25px #392d5910;
+}
+
+.avatar {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #ffd2ea, #cfc4ff);
+  font-size: 23px;
+}
+
+.userRow {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+}
+
+.username {
+  font-weight: 700;
+}
+
+.handle {
+  color: #918ba3;
+  font-size: 13px;
+}
+
+/* FEED */
+
+.storyRow {
+  display: flex;
+  gap: 12px;
+  overflow-x: auto;
+  margin-bottom: 20px;
+}
+
+.story {
+  min-width: 72px;
+  text-align: center;
+  font-size: 12px;
+}
+
+.story .avatar {
+  margin: auto;
+  width: 58px;
+  height: 58px;
+  border: 3px solid #ff70b4;
+}
+
+.createPost {
+  background: white;
+  padding: 17px;
+  border-radius: 22px;
+  box-shadow: 0 5px 25px #392d5910;
+  margin-bottom: 20px;
+}
+
+.createPost textarea {
+  width: 100%;
+  border: none;
+  resize: none;
+  outline: none;
+  min-height: 55px;
+  font-size: 16px;
+}
+
+.post {
+  background: white;
+  padding: 18px;
+  border-radius: 22px;
+  margin-bottom: 20px;
+  box-shadow: 0 5px 25px #392d5910;
+}
+
+.postHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.postText {
+  margin: 17px 0;
+  font-size: 17px;
+  line-height: 1.45;
+}
+
+.fakeVideo {
+  min-height: 310px;
+  border-radius: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 70px;
+  margin: 12px 0;
+  background: linear-gradient(135deg, #ffcae6, #cfc8ff, #bdefff);
+  position: relative;
+  overflow: hidden;
+}
+
+.fakeVideo span {
+  font-size: 20px;
+  position: absolute;
+  bottom: 15px;
+  left: 15px;
+  background: #0008;
+  color: white;
+  padding: 7px 12px;
+  border-radius: 12px;
+}
+
+.postActions {
+  display: flex;
+  gap: 18px;
+  border-top: 1px solid #eeeaf5;
+  padding-top: 13px;
+}
+
+.action {
+  background: transparent;
+  font-size: 15px;
+  color: #625c76;
+}
+
+.action.liked {
+  color: #ff3d91;
+}
+
+.comment {
+  background: #f8f6fd;
+  padding: 10px 12px;
+  border-radius: 13px;
+  margin-top: 9px;
+}
+
+.commentReply {
+  margin-left: 25px;
+  margin-top: 6px;
+  padding: 8px 10px;
+  border-left: 3px solid #b08cff;
+  color: #625c76;
+  font-size: 14px;
+}
+
+.commentBox {
+  display: flex;
+  gap: 7px;
+  margin-top: 12px;
+}
+
+.commentBox input {
+  flex: 1;
+  padding: 10px;
+  border-radius: 12px;
+  border: 2px solid #eeeaf8;
+}
+
+/* RIGHT SIDE */
+
+.rightCard {
+  background: white;
+  border-radius: 20px;
+  padding: 17px;
+  margin-bottom: 17px;
+  box-shadow: 0 5px 25px #392d5910;
+}
+
+.rightCard h3 {
+  margin-top: 0;
+}
+
+/* PROFILE */
+
+.profilePage {
+  background: white;
+  border-radius: 25px;
+  overflow: hidden;
+  box-shadow: 0 5px 25px #392d5910;
+}
+
+.profileBanner {
+  height: 150px;
+  background: linear-gradient(120deg, #ffc5e4, #c7c5ff, #b9eaff);
+}
+
+.profileInfo {
+  padding: 20px;
+}
+
+.bigAvatar {
+  width: 85px;
+  height: 85px;
+  border-radius: 50%;
+  background: #fff;
+  margin-top: -60px;
+  border: 5px solid white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 42px;
+}
+
+.profileStats {
+  display: flex;
+  gap: 25px;
+  margin: 15px 0;
+}
+
+.stat b {
+  display: block;
+  font-size: 19px;
+}
+
+.stat span {
+  color: #8a849a;
+  font-size: 13px;
+}
+
+/* SEARCH */
+
+.searchResult {
+  background: white;
+  padding: 15px;
+  border-radius: 18px;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* CREATOR */
+
+.creator {
+  background: white;
+  padding: 20px;
+  border-radius: 24px;
+  box-shadow: 0 5px 25px #392d5910;
+}
+
+.editorPreview {
+  height: 450px;
+  max-width: 270px;
+  margin: 15px auto;
+  border-radius: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(135deg, #ffd0e9, #d2ccff);
+}
+
+.previewEmoji {
+  font-size: 90px;
+}
+
+.previewText {
+  position: absolute;
+  color: white;
+  font-size: 27px;
+  font-weight: 700;
+  text-shadow: 0 2px 6px #000;
+  cursor: move;
+  user-select: none;
+}
+
+.toolRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin: 10px 0;
+}
+
+.tool {
+  padding: 9px 12px;
+  border-radius: 12px;
+  background: #f0edff;
+}
+
+.tool.selected {
+  background: #8667ff;
+  color: white;
+}
+
+.filter-normal {
+  filter: none;
+}
+
+.filter-vintage {
+  filter: sepia(.6) contrast(1.1);
+}
+
+.filter-gray {
+  filter: grayscale(1);
+}
+
+.filter-cursed {
+  filter: hue-rotate(100deg) saturate(2);
+}
+
+.filter-dream {
+  filter: brightness(1.1) saturate(.7);
+}
+
+/* MODAL */
+
+.modal {
+  position: fixed;
+  inset: 0;
+  background: #16122299;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+}
+
+.modalBox {
+  width: min(500px, 92%);
+  max-height: 90vh;
+  overflow-y: auto;
+  background: white;
+  padding: 25px;
+  border-radius: 25px;
+}
+
+.close {
+  float: right;
+  background: #f0edff;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+}
+
+/* TOAST */
+
+#toast {
+  position: fixed;
+  bottom: 25px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #29243d;
+  color: white;
+  padding: 13px 20px;
+  border-radius: 15px;
+  opacity: 0;
+  pointer-events: none;
+  transition: .3s;
+  z-index: 200;
+}
+
+#toast.show {
+  opacity: 1;
+}
+
+/* MOBILE */
+
+@media(max-width: 950px) {
+  .layout {
+    grid-template-columns: 80px minmax(300px, 650px);
+  }
+
+  .sidebar {
+    text-align: center;
+  }
+
+  .navBtn {
+    text-align: center;
+    font-size: 0;
+  }
+
+  .navBtn::first-letter {
+    font-size: 22px;
+  }
+
+  .profileMini,
+  .rightSide {
+    display: none;
+  }
+}
+
+@media(max-width: 650px) {
+  .topbar {
+    padding: 0 10px;
+  }
+
+  .topLogo {
+    font-size: 20px;
+  }
+
+  .search {
+    width: 130px;
+  }
+
+  .layout {
+    display: block;
+    padding: 12px;
+  }
+
+  .sidebar {
+    display: none;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- LOGIN -->
+
+<div id="loginScreen">
+  <div class="loginBox">
+    <div class="logo">scrolltok™</div>
+    <p>instagram but slightly more questionable.</p>
+
+    <input id="loginName" class="input" placeholder="username">
+    <input id="loginPass" class="input" type="password" placeholder="password">
+
+    <button class="primary" onclick="login()">log in</button>
+
+    <button class="secondary" style="margin-top:12px" onclick="showSignup()">
+      create account
+    </button>
+
+    <p style="font-size:12px;margin-top:20px">
+      demo accounts are saved only in this browser.
+    </p>
+  </div>
+</div>
+
+<!-- APP -->
+
+<div id="app" class="hidden">
+
+  <div class="topbar">
+    <div class="topLogo">scrolltok™</div>
+
+    <input
+      class="search"
+      id="searchInput"
+      placeholder="🔎 search people..."
+      oninput="searchUsers()"
+    >
+
+    <div class="topActions">
+      <button class="iconBtn" onclick="showPage('home')">🏠</button>
+      <button class="iconBtn" onclick="showNotifications()">🔔</button>
+      <button class="iconBtn" onclick="showPage('profile')">👤</button>
+    </div>
+  </div>
+
+  <div class="layout">
+
+    <aside class="sidebar">
+
+      <button class="navBtn active" onclick="showPage('home')">🏠 home</button>
+      <button class="navBtn" onclick="showPage('search')">🔎 search</button>
+      <button class="navBtn" onclick="showPage('creator')">🎬 create</button>
+      <button class="navBtn" onclick="showPage('friends')">👥 friends</button>
+      <button class="navBtn" onclick="showPage('profile')">👤 profile</button>
+
+      <div class="profileMini">
+        <div class="userRow">
+          <div class="avatar" id="miniAvatar">😺</div>
+          <div>
+            <div class="username" id="miniName"></div>
+            <div class="handle" id="miniHandle"></div>
+          </div>
+        </div>
+      </div>
+
+      <button class="navBtn" onclick="logout()" style="margin-top:10px">
+        🚪 log out
+      </button>
+
+    </aside>
+
+    <main id="mainContent"></main>
+
+    <aside class="rightSide">
+
+      <div class="rightCard">
+        <h3>✨ suggested</h3>
+        <div id="suggestions"></div>
+      </div>
+
+      <div class="rightCard">
+        <h3>🔥 trending</h3>
+        <p>#catsBeingSuspicious</p>
+        <p>#whyDidHeDoThat</p>
+        <p>#bananaIncident</p>
+        <p>#schoolTomorrow</p>
+      </div>
+
+    </aside>
+
+  </div>
+</div>
+
+<div id="toast"></div>
+
+<!-- SIGNUP MODAL -->
+
+<div id="signupModal" class="modal hidden">
+  <div class="modalBox">
+    <button class="close" onclick="closeModal('signupModal')">×</button>
+
+    <h2>create your account ✨</h2>
+
+    <input id="signupName" class="input" placeholder="username">
+    <input id="signupPass" class="input" type="password" placeholder="password">
+
+    <button class="primary" onclick="createAccount()">
+      create account
+    </button>
+  </div>
+</div>
+
+<script>
+
+/* =========================
+   DATA
+========================= */
+
+let db = JSON.parse(localStorage.getItem("scrolltokDB")) || {
+  users: [
+    {
+      username: "orii",
+      password: "cats",
+      emoji: "🐱",
+      bio: "professional internet creature",
+      friends: ["orii"],
+      posts: []
+    },
+    {
+      username: "gerald_the_goober",
+      password: "lion",
+      emoji: "🦁",
+      bio: "i have no idea what i'm doing",
+      friends: [],
+      posts: []
+    },
+    {
+      username: "bananafan9000",
+      password: "banana",
+      emoji: "🍌",
+      bio: "banana enthusiast",
+      friends: [],
+      posts: []
+    },
+    {
+      username: "tiny_pickle",
+      password: "pickle",
+      emoji: "🥒",
+      bio: "small but powerful",
+      friends: [],
+      posts: []
+    }
+  ],
+  posts: [
+    {
+      id: 1,
+      username: "gerald_the_goober",
+      text: "i tried to make a sandwich and somehow created a national emergency",
+      emoji: "🥪",
+      likes: 12,
+      likedBy: [],
+      comments: [
+        {
+          user: "bananafan9000",
+          text: "how do you even do that 😭",
+          reply: "gerald_the_goober",
+          replyText: "i don't know either bro"
+        }
+      ]
+    },
+    {
+      id: 2,
+      username: "bananafan9000",
+      text: "the banana has been located.",
+      emoji: "🍌",
+      likes: 31,
+      likedBy: [],
+      comments: [
+        {
+          user: "tiny_pickle",
+          text: "WHERE",
+          reply: "bananafan9000",
+          replyText: "under the couch 😭"
+        }
+      ]
+    },
+    {
+      id: 3,
+      username: "orii",
+      text: "my cat looked at me for 7 seconds and then walked away",
+      emoji: "🐈",
+      likes: 48,
+      likedBy: [],
+      comments: []
+    }
+  ],
+  notifications: []
+};
+
+let currentUser = localStorage.getItem("scrolltokCurrent");
+
+function saveDB() {
+  localStorage.setItem("scrolltokDB", JSON.stringify(db));
+}
+
+function getUser(name) {
+  return db.users.find(u => u.username === name);
+}
+
+/* =========================
+   LOGIN
+========================= */
+
+function login() {
+
+  const name = document.getElementById("loginName").value.trim();
+  const pass = document.getElementById("loginPass").value;
+
+  const user = getUser(name);
+
+  if (!user || user.password !== pass) {
+    alert("wrong username or password 😭");
+    return;
+  }
+
+  currentUser = name;
+  localStorage.setItem("scrolltokCurrent", name);
+
+  startApp();
+}
+
+function showSignup() {
+  document.getElementById("signupModal").classList.remove("hidden");
+}
+
+function createAccount() {
+
+  const name = document.getElementById("signupName").value.trim();
+  const pass = document.getElementById("signupPass").value;
+
+  if (!name || !pass) {
+    alert("you need a username AND password 😭");
+    return;
+  }
+
+  if (db.users.some(u => u.username.toLowerCase() === name.toLowerCase())) {
+    alert("that username is already taken!");
+    return;
+  }
+
+  db.users.push({
+    username: name,
+    password: pass,
+    emoji: "😎",
+    bio: "new here 👋",
+    friends: [name],
+    posts: []
+  });
+
+  saveDB();
+
+  currentUser = name;
+  localStorage.setItem("scrolltokCurrent", name);
+
+  closeModal("signupModal");
+  startApp();
+}
+
+function logout() {
+  currentUser = null;
+  localStorage.removeItem("scrolltokCurrent");
+
+  document.getElementById("app").classList.add("hidden");
+  document.getElementById("loginScreen").classList.remove("hidden");
+}
+
+/* =========================
+   START APP
+========================= */
+
+function startApp() {
+
+  document.getElementById("loginScreen").classList.add("hidden");
+  document.getElementById("app").classList.remove("hidden");
+
+  updateMiniProfile();
+  showPage("home");
+  renderSuggestions();
+}
+
+function updateMiniProfile() {
+
+  const user = getUser(currentUser);
+
+  if (!user) return;
+
+  document.getElementById("miniName").textContent = user.username;
+  document.getElementById("miniHandle").textContent = "@" + user.username;
+  document.getElementById("miniAvatar").textContent = user.emoji;
+}
+
+/* =========================
+   NAVIGATION
+========================= */
+
+function showPage(page) {
+
+  const main = document.getElementById("mainContent");
+
+  if (page === "home") renderHome();
+  if (page === "search") renderSearchPage();
+  if (page === "creator") renderCreator();
+  if (page === "friends") renderFriends();
+  if (page === "profile") renderProfile(currentUser);
+}
+
+/* =========================
+   HOME
+========================= */
+
+function renderHome() {
+
+  let html = `
+    <div class="storyRow">
+      ${db.users.map(u => `
+        <div class="story" onclick="renderProfile('${u.username}')">
+          <div class="avatar">${u.emoji}</div>
+          ${u.username}
+        </div>
+      `).join("")}
+    </div>
+
+    <div class="createPost">
+      <textarea id="newPostText" placeholder="what questionable thing happened today?"></textarea>
+      <button class="primary" onclick="makePost()">post something</button>
+    </div>
+  `;
+
+  db.posts.slice().reverse().forEach(post => {
+    html += renderPost(post);
+  });
+
+  document.getElementById("mainContent").innerHTML = html;
+}
+
+function renderPost(post) {
+
+  const user = getUser(post.username);
+  const liked = post.likedBy.includes(currentUser);
+
+  return `
+    <article class="post">
+
+      <div class="postHeader">
+        <div class="userRow" onclick="renderProfile('${post.username}')"
+             style="cursor:pointer">
+
+          <div class="avatar">${user?.emoji || "🙂"}</div>
+
+          <div>
+            <div class="username">${post.username}</div>
+            <div class="handle">posted something suspicious</div>
+          </div>
+        </div>
+
+        ${post.username === currentUser
+          ? `<button class="secondary" onclick="deletePost(${post.id})">🗑️</button>`
+          : ""}
+      </div>
+
+      <div class="postText">${escapeHTML(post.text)}</div>
+
+      <div class="fakeVideo">
+        ${post.emoji || "🎥"}
+        <span>scrolltok original™</span>
+      </div>
+
+      <div class="postActions">
+
+        <button class="action ${liked ? "liked" : ""}"
+          onclick="toggleLike(${post.id})">
+          ${liked ? "❤️" : "🤍"} ${post.likes}
+        </button>
+
+        <button class="action"
+          onclick="focusComment(${post.id})">
+          💬 ${post.comments.length}
+        </button>
+
+        <button class="action"
+          onclick="toast('shared with absolutely nobody')">
+          ↗️ share
+        </button>
+
+      </div>
+
+      <div>
+        ${post.comments.map(c => `
+          <div class="comment">
+            <b>${c.user}</b> ${escapeHTML(c.text)}
+
+            ${c.replyText ? `
+              <div class="commentReply">
+                <b>${c.reply}</b> ${escapeHTML(c.replyText)}
+              </div>
+            ` : ""}
+          </div>
+        `).join("")}
+      </div>
+
+      <div class="commentBox">
+        <input
+          id="comment-${post.id}"
+          placeholder="say something..."
+          onkeydown="if(event.key==='Enter') addComment(${post.id})"
+        >
+        <button class="secondary"
+          onclick="addComment(${post.id})">send</button>
+      </div>
+
+    </article>
+  `;
+}
+
+function makePost() {
+
+  const text = document.getElementById("newPostText").value.trim();
+
+  if (!text) return;
+
+  db.posts.push({
+    id: Date.now(),
+    username: currentUser,
+    text,
+    emoji: "📸",
+    likes: 0,
+    likedBy: [],
+    comments: []
+  });
+
+  saveDB();
+  renderHome();
+  toast("posted!! 📸");
+}
+
+function deletePost(id) {
+
+  db.posts = db.posts.filter(p => p.id !== id);
+
+  saveDB();
+  renderHome();
+}
+
+function toggleLike(id) {
+
+  const post = db.posts.find(p => p.id === id);
+  if (!post) return;
+
+  if (post.likedBy.includes(currentUser)) {
+    post.likedBy = post.likedBy.filter(x => x !== currentUser);
+    post.likes--;
+  } else {
+    post.likedBy.push(currentUser);
+    post.likes++;
+
+    if (post.username !== currentUser) {
+      db.notifications.push(
+        `${currentUser} liked your post ❤️`
+      );
+    }
+  }
+
+  saveDB();
+  renderHome();
+}
+
+function addComment(id) {
+
+  const input = document.getElementById("comment-" + id);
+  const text = input.value.trim();
+
+  if (!text) return;
+
+  const post = db.posts.find(p => p.id === id);
+
+  post.comments.push({
+    user: currentUser,
+    text,
+    reply: post.username,
+    replyText: generateReply(text, post.text)
+  });
+
+  if (post.username !== currentUser) {
+    db.notifications.push(
+      `${currentUser} commented on your post 💬`
+    );
+  }
+
+  saveDB();
+  renderHome();
+}
+
+function focusComment(id) {
+  setTimeout(() => {
+    document.getElementById("comment-" + id)?.focus();
+  }, 100);
+}
+
+/* =========================
+   FUNNY REPLIES
+========================= */
+
+function generateReply(comment, postText) {
+
+  const c = comment.toLowerCase();
+  const p = postText.toLowerCase();
+
+  if (c.includes("cat") || p.includes("cat")) {
+    const replies = [
+      "he knows exactly what he did 😭",
+      "the cat has refused to comment",
+      "he's currently plotting something",
+      "cat behavior unfortunately"
+    ];
+    return random(replies);
+  }
+
+  if (c.includes("why")) {
+    return random([
+      "excellent question. i have absolutely no answer.",
+      "i ask myself this every day",
+      "because apparently we make bad decisions here",
+      "honestly i was wondering the same thing 😭"
+    ]);
+  }
+
+  if (c.includes("where")) {
+    return random([
+      "probably under the couch",
+      "i lost it approximately 4 minutes ago",
+      "somewhere it definitely should not be",
+      "check behind the suspicious object"
+    ]);
+  }
+
+  if (c.includes("lol") || c.includes("haha") || c.includes("😭")) {
+    return random([
+      "glad someone understands",
+      "this situation is becoming increasingly serious",
+      "i'm choosing to take that as a compliment",
+      "😭 exactly"
+    ]);
+  }
+
+  if (c.includes("bro")) {
+    return random([
+      "bro.",
+      "BRO 😭",
+      "i know bro",
+      "we're cooked"
+    ]);
+  }
+
+  return random([
+    "real",
+    "that's actually so true 😭",
+    "i was thinking the exact same thing",
+    "this is the most reasonable comment i've received today",
+    "noted. adding this to the investigation.",
+    "you might be onto something",
+    "honestly? valid."
+  ]);
+}
+
+/* =========================
+   SEARCH
+========================= */
+
+function searchUsers() {
+
+  const query = document.getElementById("searchInput").value.trim().toLowerCase();
+
+  if (!query) {
+    showPage("home");
+    return;
+  }
+
+  const matches = db.users.filter(u =>
+    u.username.toLowerCase().includes(query)
+  );
+
+  document.getElementById("mainContent").innerHTML = `
+    <h2>🔎 search results</h2>
+
+    ${
+      matches.length
+      ? matches.map(u => searchUserCard(u)).join("")
+      : `<div class="post">no users found 😭</div>`
+    }
+  `;
+}
+
+function renderSearchPage() {
+
+  document.getElementById("mainContent").innerHTML = `
+    <div class="post">
+      <h2>🔎 find people</h2>
+      <p>type a username in the search bar above!</p>
+      <p>yes, you can search for yourself. no, we won't stop you.</p>
+    </div>
+  `;
+}
+
+function searchUserCard(user) {
+
+  const me = getUser(currentUser);
+  const isFriend = me.friends.includes(user.username);
+
+  return `
+    <div class="searchResult">
+
+      <div class="userRow"
+        onclick="renderProfile('${user.username}')"
+        style="cursor:pointer">
+
+        <div class="avatar">${user.emoji}</div>
+
+        <div>
+          <div class="username">${user.username}</div>
+          <div class="handle">${user.bio}</div>
+        </div>
+
+      </div>
+
+      <button class="${isFriend ? "secondary" : "primary"}"
+        style="width:auto;margin:0"
+        onclick="toggleFriend('${user.username}')">
+
+        ${isFriend ? "✓ friends" : "➕ friend"}
+
+      </button>
+
+    </div>
+  `;
+}
+
+/* =========================
+   FRIENDS
+========================= */
+
+function toggleFriend(name) {
+
+  const me = getUser(currentUser);
+
+  if (me.friends.includes(name)) {
+    me.friends = me.friends.filter(x => x !== name);
+    toast("unfriended 😔");
+  } else {
+    me.friends.push(name);
+
+    if (name !== currentUser) {
+      db.notifications.push(
+        `${currentUser} became your friend 👥`
+      );
+    }
+
+    toast("FRIEND ADDED 👥");
+  }
+
+  saveDB();
+
+  searchUsers();
+  renderFriends();
+}
+
+function renderFriends() {
+
+  const me = getUser(currentUser);
+
+  document.getElementById("mainContent").innerHTML = `
+    <h2>👥 your friends</h2>
+
+    ${
+      me.friends.map(name => {
+        const u = getUser(name);
+
+        return `
+          <div class="searchResult">
+
+            <div class="userRow"
+              onclick="renderProfile('${u.username}')"
+              style="cursor:pointer">
+
+              <div class="avatar">${u.emoji}</div>
+
+              <div>
+                <div class="username">${u.username}</div>
+                <div class="handle">@${u.username}</div>
+              </div>
+
+            </div>
+
+            <span>👥</span>
+
+          </div>
+        `;
+      }).join("")
+      || `<div class="post">you have no friends. tragic.</div>`
+    }
+  `;
+}
+
+/* =========================
+   PROFILE
+========================= */
+
+function renderProfile(name) {
+
+  const user = getUser(name);
+
+  if (!user) return;
+
+  const me = getUser(currentUser);
+  const friend = me.friends.includes(name);
+
+  const posts = db.posts.filter(p => p.username === name);
+
+  document.getElementById("mainContent").innerHTML = `
+
+    <div class="profilePage">
+
+      <div class="profileBanner"></div>
+
+      <div class="profileInfo">
+
+        <div class="bigAvatar">${user.emoji}</div>
+
+        <h2>${user.username}</h2>
+        <div class="handle">@${user.username}</div>
+
+        <p>${escapeHTML(user.bio)}</p>
+
+        <div class="profileStats">
+          <div class="stat">
+            <b>${posts.length}</b>
+            <span>posts</span>
+          </div>
+
+          <div class="stat">
+            <b>${user.friends.length}</b>
+            <span>friends</span>
+          </div>
+        </div>
+
+        ${
+          name !== currentUser
+          ? `
+            <button class="primary"
+              style="width:auto"
+              onclick="toggleFriend('${name}')">
+              ${friend ? "✓ friends" : "➕ add friend"}
+            </button>
+          `
+          : `
+            <button class="secondary">
+              ✏️ edit profile
+            </button>
+          `
+        }
+
+      </div>
+    </div>
+
+    <h2 style="margin-top:25px">📸 posts</h2>
+
+    ${
+      posts.length
+      ? posts.slice().reverse().map(p => renderPost(p)).join("")
+      : `<div class="post">this person hasn't posted anything yet 👀</div>`
+    }
+  `;
+}
+
+/* =========================
+   CREATOR
+========================= */
+
+let editor = {
+  filter: "filter-normal",
+  effect: "",
+  text: "",
+  emoji: "🐱"
+};
+
+function renderCreator() {
+
+  document.getElementById("mainContent").innerHTML = `
+
+    <div class="creator">
+
+      <h2>🎬 video creator</h2>
+      <p>make the most unnecessarily edited video possible.</p>
+
+      <div id="preview" class="editorPreview ${editor.filter} ${editor.effect}">
+        <div class="previewEmoji">${editor.emoji}</div>
+
+        ${
+          editor.text
+          ? `<div class="previewText">${escapeHTML(editor.text)}</div>`
+          : ""
+        }
+      </div>
+
+      <h3>🎨 filters</h3>
+
+      <div class="toolRow">
+
+        <button class="tool" onclick="setFilter('filter-normal')">
+          normal
+        </button>
+
+        <button class="tool" onclick="setFilter('filter-vintage')">
+          📼 vintage
+        </button>
+
+        <button class="tool" onclick="setFilter('filter-gray')">
+          🩶 grayscale
+        </button>
+
+        <button class="tool" onclick="setFilter('filter-cursed')">
+          👁️ cursed
+        </button>
+
+        <button class="tool" onclick="setFilter('filter-dream')">
+          ☁️ dream
+        </button>
+
+      </div>
+
+      <h3>💥 effects</h3>
+
+      <div class="toolRow">
+
+        <button class="tool" onclick="setEffect('shake')">
+          📳 shake
+        </button>
+
+        <button class="tool" onclick="setEffect('spin')">
+          🌀 spin
+        </button>
+
+        <button class="tool" onclick="setEffect('bounce')">
+          🏀 bounce
+        </button>
+
+        <button class="tool" onclick="setEffect('')">
+          ❌ none
+        </button>
+
+      </div>
+
+      <h3>📝 text</h3>
+
+      <input
+        class="input"
+        id="creatorText"
+        placeholder="type text for your video..."
+        value="${escapeHTML(editor.text)}"
+        oninput="editor.text=this.value;updatePreview()"
+      >
+
+      <h3>😎 subject</h3>
+
+      <div class="toolRow">
+
+        ${["🐱","🐶","🦆","🍌","🥒","🦁","💀","🧍"].map(e => `
+          <button class="tool" onclick="setEmoji('${e}')">${e}</button>
+        `).join("")}
+
+      </div>
+
+      <button class="primary" onclick="publishVideo()">
+        📤 post this masterpiece
+      </button>
+
+    </div>
+  `;
+}
+
+function setFilter(filter) {
+  editor.filter = filter;
+  updatePreview();
+}
+
+function setEffect(effect) {
+  editor.effect = effect;
+  updatePreview();
+}
+
+function setEmoji(emoji) {
+  editor.emoji = emoji;
+  updatePreview();
+}
+
+function updatePreview() {
+
+  const preview = document.getElementById("preview");
+
+  if (!preview) return;
+
+  preview.className =
+    "editorPreview " +
+    editor.filter +
+    " " +
+    editor.effect;
+
+  preview.innerHTML = `
+    <div class="previewEmoji">${editor.emoji}</div>
+    ${
+      editor.text
+      ? `<div class="previewText">${escapeHTML(editor.text)}</div>`
+      : ""
+    }
+  `;
+}
+
+function publishVideo() {
+
+  const text = editor.text || "my incredibly important video";
+
+  db.posts.push({
+    id: Date.now(),
+    username: currentUser,
+    text,
+    emoji: editor.emoji,
+    likes: 0,
+    likedBy: [],
+    comments: []
+  });
+
+  saveDB();
+
+  editor = {
+    filter: "filter-normal",
+    effect: "",
+    text: "",
+    emoji: "🐱"
+  };
+
+  toast("VIDEO POSTED 🎬");
+
+  setTimeout(() => showPage("home"), 600);
+}
+
+/* =========================
+   SUGGESTIONS
+========================= */
+
+function renderSuggestions() {
+
+  const me = getUser(currentUser);
+
+  const people = db.users
+    .filter(u => !me.friends.includes(u.username))
+    .slice(0, 3);
+
+  document.getElementById("suggestions").innerHTML =
+    people.map(u => `
+      <div class="userRow" style="margin-bottom:12px">
+
+        <div class="avatar">${u.emoji}</div>
+
+        <div style="flex:1">
+          <div class="username">${u.username}</div>
+          <div class="handle">${u.bio}</div>
+        </div>
+
+        <button class="secondary"
+          onclick="toggleFriend('${u.username}')">
+          +
+        </button>
+
+      </div>
+    `).join("");
+}
+
+/* =========================
+   NOTIFICATIONS
+========================= */
+
+function showNotifications() {
+
+  const notes = db.notifications
+    .filter(n => n.startsWith(currentUser) === false)
+    .slice(-10)
+    .reverse();
+
+  alert(
+    notes.length
+    ? "🔔 notifications:\n\n" + notes.join("\n")
+    : "🔔 no notifications!\n\nsuspiciously peaceful..."
+  );
+}
+
+/* =========================
+   HELPERS
+========================= */
+
+function random(arr) {
+  return arr[Math.floor(Math.random() * arr.length)];
+}
+
+function escapeHTML(text) {
+
+  return String(text)
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#039;");
+}
+
+function closeModal(id) {
+  document.getElementById(id).classList.add("hidden");
+}
+
+let toastTimer;
+
+function toast(message) {
+
+  const t = document.getElementById("toast");
+
+  t.textContent = message;
+  t.classList.add("show");
+
+  clearTimeout(toastTimer);
+
+  toastTimer = setTimeout(() => {
+    t.classList.remove("show");
+  }, 1800);
+}
+
+/* =========================
+   EFFECTS
+========================= */
+
+const style = document.createElement("style");
+
+style.textContent = `
+
+.shake {
+  animation: shake .25s infinite;
+}
+
+.spin {
+  animation: spin 3s linear infinite;
+}
+
+.bounce {
+  animation: bounce 1s infinite alternate;
+}
+
+@keyframes shake {
+  0% { transform: translate(0,0) rotate(0); }
+  25% { transform: translate(4px,-3px) rotate(1deg); }
+  50% { transform: translate(-4px,3px) rotate(-1deg); }
+  75% { transform: translate(3px,2px) rotate(1deg); }
+  100% { transform: translate(0,0) rotate(0); }
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes bounce {
+  from { transform: translateY(15px); }
+  to { transform: translateY(-15px); }
+}
+
+`;
+
+document.head.appendChild(style);
+
+/* =========================
+   AUTO LOGIN
+========================= */
+
+if (currentUser && getUser(currentUser)) {
+  startApp();
+}
+
+</script>
+
+</body>
+</html>
+```
