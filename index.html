@@ -1270,12 +1270,15 @@ function createAccount() {
 
 function logout() {
 
-  /*
-    AFTER THE ALIEN REPAIR:
-    the first logout attempt is a trap.
-  */
-  if (repairComplete && !logoutTrapUsed) {
-    triggerLogoutTrap();
+  // Once 67 has cursed Scrolltok, you are NOT allowed to log out.
+  // Before the repair is complete, the button is simply blocked.
+  // After the repair, the first logout attempt triggers the alien trap.
+  if (cursedMode) {
+    if (repairComplete && !logoutTrapUsed) {
+      triggerLogoutTrap();
+    } else {
+      toast("CANNOT LOG OUT 💀 Scrolltok has you now...");
+    }
     return;
   }
 
@@ -2324,6 +2327,178 @@ function checkCaptcha() {
 
 }
 
+
+/* =========================================================
+   ALIEN STORYLINE
+========================================================= */
+
+let alienCaptchaPassed = false;
+let repairStep = 0;
+
+const repairSteps = [
+  "reboot the banana router 🍌",
+  "remove 14 invisible ducks 🦆",
+  "untangle the scrolling algorithm 🌀",
+  "locate Gerald's emergency exit 🦁",
+  "repair the 67 dimension 💀",
+  "teach the WiFi how to behave 📶",
+  "delete the illegal pickle code 🥒",
+  "reinstall the funny algorithm 🤖",
+  "find the missing semicolon ;",
+  "convince the server that cats are real 🐈",
+  "defeat the buffering wheel ⏳",
+  "press the extremely suspicious button 🔴"
+];
+
+function updateStoryButton() {
+  const btn = document.getElementById("whatThisButton");
+  if (!btn) return;
+  btn.style.display = (cursedMode && currentUser && !repairComplete) ? "block" : "none";
+}
+
+function startAlienStory() {
+  document.getElementById("app").style.display = "none";
+  document.getElementById("whatThisButton").style.display = "none";
+  alienCaptchaPassed = false;
+  showAlienCaptcha();
+}
+
+function showAlienCaptcha() {
+  const screen = document.getElementById("agentCaptchaScreen");
+  const grid = document.getElementById("agentCaptchaGrid");
+  if (!screen || !grid) return;
+  screen.style.display = "flex";
+  grid.innerHTML = "";
+
+  const items = [
+    "👁️","🐈","👁️","🍌","👁️","🦆","🐱","👁️","👁️"
+  ];
+
+  items.forEach(item => {
+    const cell = document.createElement("button");
+    cell.className = "agentCaptchaCell";
+    cell.textContent = item;
+    cell.dataset.correct = item === "👁️";
+    cell.onclick = () => cell.classList.toggle("selected");
+    grid.appendChild(cell);
+  });
+}
+
+function checkAgentCaptcha() {
+  const cells = document.querySelectorAll("#agentCaptchaGrid .agentCaptchaCell");
+  let correct = true;
+  cells.forEach(cell => {
+    const selected = cell.classList.contains("selected");
+    const should = cell.dataset.correct === "true";
+    if (selected !== should) correct = false;
+  });
+
+  if (!correct) {
+    alert("WRONG 💀 click ONLY the 👁️");
+    return;
+  }
+
+  alienCaptchaPassed = true;
+  document.getElementById("agentCaptchaScreen").style.display = "none";
+  document.getElementById("alienScreen").style.display = "flex";
+  repairStep = 0;
+
+  const log = document.getElementById("repairLog");
+  const progress = document.getElementById("repairProgress");
+  if (log) log.innerHTML = "<p>👽 alien agent connected.</p><p>system status: EXTREMELY BROKEN</p>";
+  if (progress) progress.textContent = `repair 0 / ${repairSteps.length}`;
+
+  const button = document.getElementById("repairButton");
+  if (button) {
+    button.textContent = "start repair 👽";
+    button.onclick = nextRepairStep;
+  }
+}
+
+function nextRepairStep() {
+  const log = document.getElementById("repairLog");
+  const progress = document.getElementById("repairProgress");
+  if (repairStep < repairSteps.length) {
+    const p = document.createElement("p");
+    p.textContent = `✓ ${repairSteps[repairStep]}`;
+    log.appendChild(p);
+    repairStep++;
+    progress.textContent = `repair ${repairStep} / ${repairSteps.length}`;
+    if (repairStep === repairSteps.length) {
+      setTimeout(finishAlienRepair, 700);
+    }
+  }
+}
+
+function finishAlienRepair() {
+  repairComplete = true;
+  localStorage.setItem("scrolltok_repairComplete", "true");
+  const log = document.getElementById("repairLog");
+  const progress = document.getElementById("repairProgress");
+  if (log) log.innerHTML += "<p>✅ SYSTEM FIXED. probably.</p><p>👽 alien: you're good to go.</p>";
+  if (progress) progress.textContent = "repair COMPLETE ✅";
+  const button = document.getElementById("repairButton");
+  if (button) {
+    button.textContent = "return to scrolltok";
+    button.onclick = () => {
+      document.getElementById("alienScreen").style.display = "none";
+      document.getElementById("app").style.display = "block";
+      showPage("crazy");
+      updateStoryButton();
+    };
+  }
+  updateStoryButton();
+}
+
+function triggerLogoutTrap() {
+  logoutTrapUsed = true;
+  localStorage.setItem("scrolltok_logoutTrapUsed", "true");
+
+  document.getElementById("app").style.display = "none";
+  document.getElementById("alienScreen").style.display = "flex";
+
+  const log = document.getElementById("repairLog");
+  const progress = document.getElementById("repairProgress");
+  const button = document.getElementById("repairButton");
+  if (log) log.innerHTML = "<p>⚠️ LOG OUT REQUEST DETECTED.</p><p>👽 CANNOT LOG OUT.</p><p>👽 ...this was a trap.</p>";
+  if (progress) progress.textContent = "SYSTEM ERROR";
+  if (button) button.style.display = "none";
+
+  setTimeout(() => {
+    document.getElementById("alienScreen").style.display = "none";
+    document.getElementById("glitchEnding").style.display = "flex";
+    setTimeout(showRatingScreen, 4200);
+  }, 1800);
+}
+
+function showRatingScreen() {
+  document.getElementById("glitchEnding").style.display = "none";
+  document.getElementById("ratingScreen").style.display = "flex";
+}
+
+function rateGame(score) {
+  localStorage.setItem("scrolltok_rating", String(score));
+  const response = document.getElementById("ratingResponse");
+  if (response) response.textContent = `you rated Scrolltok ${score}/5 😭`;
+  const choice = document.getElementById("endingChoice");
+  if (choice) choice.style.display = "block";
+}
+
+function returnToScrolltok() {
+  document.getElementById("ratingScreen").style.display = "none";
+  document.getElementById("app").style.display = "block";
+  if (currentUser && users[currentUser]) {
+    showPage("crazy");
+  } else {
+    document.getElementById("app").style.display = "none";
+    document.getElementById("loginScreen").style.display = "flex";
+  }
+}
+
+function badEnding() {
+  document.getElementById("ratingScreen").style.display = "none";
+  document.getElementById("blackEnding").style.display = "flex";
+}
 
 /* =========================================================
    CURSED MODE
