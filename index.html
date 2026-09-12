@@ -4,632 +4,731 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>scrollTok™ 💀</title>
+<title>scrolltok™</title>
 
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&display=swap');
 
-* {
-  box-sizing: border-box;
+*{box-sizing:border-box}
+
+body{
+  margin:0;
+  font-family:Fredoka,sans-serif;
+  background:#f5f1ff;
+  color:#29233d;
 }
 
-body {
-  margin: 0;
-  font-family: "Fredoka", sans-serif;
-  background: #f7f4ff;
-  color: #25213b;
-}
+button,input,textarea{font-family:inherit}
 
-button, input, textarea, select {
-  font-family: inherit;
-}
+button{cursor:pointer;border:0}
 
-button {
-  cursor: pointer;
-  border: none;
-}
+.hidden{display:none!important}
 
-.hidden {
-  display: none !important;
-}
+/* ================= LOGIN ================= */
 
-/* LOGIN */
-
-#loginScreen {
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+#loginScreen{
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
   background:
-    radial-gradient(circle at 20% 20%, #ffd6ef, transparent 30%),
-    radial-gradient(circle at 80% 80%, #cde7ff, transparent 30%),
-    #f7f4ff;
+    radial-gradient(circle at 15% 20%,#ffc9e7,transparent 30%),
+    radial-gradient(circle at 85% 80%,#c8dcff,transparent 30%),
+    #f5f1ff;
 }
 
-.loginBox {
-  width: min(430px, 92%);
-  padding: 35px;
-  border-radius: 30px;
-  background: white;
-  box-shadow: 0 20px 60px #342b5930;
-  text-align: center;
+.loginBox{
+  width:min(430px,92%);
+  background:white;
+  padding:35px;
+  border-radius:30px;
+  text-align:center;
+  box-shadow:0 20px 70px #33245b25;
 }
 
-.logo {
-  font-size: 42px;
-  font-weight: 700;
-  background: linear-gradient(90deg, #ff4fa3, #8d65ff, #4fb7ff);
-  -webkit-background-clip: text;
-  color: transparent;
+.logo{
+  font-size:43px;
+  font-weight:700;
+  background:linear-gradient(90deg,#ff4da6,#8565ff,#48baff);
+  -webkit-background-clip:text;
+  color:transparent;
 }
 
-.loginBox p {
-  color: #77728c;
+.loginBox p{color:#777187}
+
+.input{
+  width:100%;
+  padding:14px;
+  border:2px solid #eeeaf7;
+  border-radius:15px;
+  margin:6px 0;
+  outline:none;
+}
+
+.input:focus{border-color:#9170ff}
+
+.primary{
+  width:100%;
+  padding:14px;
+  border-radius:15px;
+  color:white;
+  font-weight:700;
+  font-size:16px;
+  background:linear-gradient(90deg,#ff4da6,#8464ff);
+  margin-top:9px;
+}
+
+.secondary{
+  padding:10px 15px;
+  border-radius:13px;
+  background:#eeeaff;
+  color:#574e76;
+  font-weight:600;
+}
+
+/* ================= TOPBAR ================= */
+
+#app{min-height:100vh}
+
+.topbar{
+  height:70px;
+  background:white;
+  border-bottom:1px solid #e9e4f4;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 25px;
+  position:sticky;
+  top:0;
+  z-index:20;
 }
 
-.input {
-  width: 100%;
-  padding: 14px 16px;
-  margin: 7px 0;
-  border: 2px solid #eeeaf8;
-  border-radius: 15px;
-  outline: none;
-  font-size: 15px;
+.topLogo{
+  font-size:26px;
+  font-weight:700;
+  background:linear-gradient(90deg,#ff4da6,#8065ff);
+  -webkit-background-clip:text;
+  color:transparent;
 }
 
-.input:focus {
-  border-color: #a777ff;
+.search{
+  width:310px;
+  padding:11px 17px;
+  border:2px solid #eeeaf7;
+  border-radius:20px;
+  outline:none;
+  background:#faf9ff;
 }
 
-.primary {
-  width: 100%;
-  padding: 14px;
-  margin-top: 10px;
-  border-radius: 15px;
-  color: white;
-  font-weight: 700;
-  font-size: 16px;
-  background: linear-gradient(90deg, #ff4fa3, #8667ff);
+.topActions{
+  display:flex;
+  gap:8px;
 }
 
-.secondary {
-  padding: 10px 15px;
-  border-radius: 13px;
-  background: #eeeaff;
-  color: #514b70;
-  font-weight: 600;
+.iconBtn{
+  width:42px;
+  height:42px;
+  border-radius:50%;
+  background:#f0ecff;
+  font-size:18px;
 }
 
-/* APP */
+/* ================= LAYOUT ================= */
 
-#app {
-  min-height: 100vh;
+.layout{
+  display:grid;
+  grid-template-columns:210px minmax(300px,650px) 250px;
+  gap:25px;
+  max-width:1200px;
+  margin:auto;
+  padding:25px;
 }
 
-.topbar {
-  height: 70px;
-  background: white;
-  border-bottom: 1px solid #ebe7f5;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 25px;
-  position: sticky;
-  top: 0;
-  z-index: 50;
+.sidebar{
+  position:sticky;
+  top:95px;
+  height:fit-content;
 }
 
-.topLogo {
-  font-size: 25px;
-  font-weight: 700;
-  background: linear-gradient(90deg, #ff4fa3, #8068ff);
-  -webkit-background-clip: text;
-  color: transparent;
+.navBtn{
+  width:100%;
+  text-align:left;
+  padding:14px;
+  border-radius:15px;
+  background:transparent;
+  color:#5d5674;
+  font-size:16px;
+  margin-bottom:4px;
 }
 
-.search {
-  width: 300px;
-  padding: 11px 17px;
-  border-radius: 20px;
-  border: 2px solid #eeeaf8;
-  outline: none;
-  background: #faf9ff;
+.navBtn:hover{
+  background:#eeeaff;
+  color:#7658e8;
 }
 
-.topActions {
-  display: flex;
-  gap: 9px;
+.profileMini{
+  background:white;
+  border-radius:20px;
+  padding:16px;
+  margin-top:20px;
+  box-shadow:0 5px 25px #33245b10;
 }
 
-.iconBtn {
-  width: 42px;
-  height: 42px;
-  border-radius: 50%;
-  background: #f1edff;
-  font-size: 19px;
+.userRow{
+  display:flex;
+  align-items:center;
+  gap:10px;
 }
 
-.layout {
-  display: grid;
-  grid-template-columns: 220px minmax(300px, 650px) 250px;
-  gap: 25px;
-  max-width: 1200px;
-  margin: auto;
-  padding: 25px;
+.avatar{
+  width:45px;
+  height:45px;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:linear-gradient(135deg,#ffd2e9,#d2c8ff);
+  font-size:22px;
 }
 
-/* SIDEBAR */
+.username{font-weight:700}
 
-.sidebar {
-  position: sticky;
-  top: 95px;
-  height: fit-content;
+.handle{
+  color:#90899f;
+  font-size:13px;
 }
 
-.navBtn {
-  width: 100%;
-  text-align: left;
-  padding: 14px;
-  border-radius: 15px;
-  background: transparent;
-  font-size: 16px;
-  margin-bottom: 5px;
-  color: #56506f;
+/* ================= FEED ================= */
+
+.storyRow{
+  display:flex;
+  gap:12px;
+  overflow-x:auto;
+  margin-bottom:20px;
 }
 
-.navBtn:hover,
-.navBtn.active {
-  background: #eeeaff;
-  color: #7654e8;
-  font-weight: 700;
+.story{
+  min-width:72px;
+  text-align:center;
+  font-size:12px;
 }
 
-.profileMini {
-  margin-top: 20px;
-  padding: 17px;
-  border-radius: 20px;
-  background: white;
-  box-shadow: 0 5px 25px #392d5910;
+.story .avatar{
+  margin:auto;
+  width:60px;
+  height:60px;
+  border:3px solid #ff6caf;
 }
 
-.avatar {
-  width: 45px;
-  height: 45px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: linear-gradient(135deg, #ffd2ea, #cfc4ff);
-  font-size: 23px;
+.createPost,.post,.rightCard,.creator,.profilePage{
+  background:white;
+  border-radius:22px;
+  box-shadow:0 5px 25px #33245b10;
 }
 
-.userRow {
-  display: flex;
-  align-items: center;
-  gap: 11px;
+.createPost{
+  padding:17px;
+  margin-bottom:20px;
 }
 
-.username {
-  font-weight: 700;
+.createPost textarea{
+  width:100%;
+  min-height:55px;
+  border:0;
+  outline:0;
+  resize:none;
+  font-size:16px;
 }
 
-.handle {
-  color: #918ba3;
-  font-size: 13px;
+.post{
+  padding:18px;
+  margin-bottom:20px;
 }
 
-/* FEED */
+.postText{
+  margin:16px 0;
+  font-size:17px;
+  line-height:1.45;
+}
 
-.storyRow {
-  display: flex;
-  gap: 12px;
-  overflow-x: auto;
-  margin-bottom: 20px;
+.video{
+  min-height:330px;
+  border-radius:19px;
+  position:relative;
+  overflow:hidden;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:85px;
 }
 
-.story {
-  min-width: 72px;
-  text-align: center;
-  font-size: 12px;
+.videoCaption{
+  position:absolute;
+  bottom:15px;
+  left:15px;
+  right:15px;
+  color:white;
+  background:#0009;
+  border-radius:13px;
+  padding:9px 12px;
+  font-size:16px;
 }
 
-.story .avatar {
-  margin: auto;
-  width: 58px;
-  height: 58px;
-  border: 3px solid #ff70b4;
+.postActions{
+  display:flex;
+  gap:18px;
+  padding-top:13px;
+  margin-top:13px;
+  border-top:1px solid #eeeaf5;
 }
 
-.createPost {
-  background: white;
-  padding: 17px;
-  border-radius: 22px;
-  box-shadow: 0 5px 25px #392d5910;
-  margin-bottom: 20px;
+.action{
+  background:transparent;
+  color:#615a75;
 }
 
-.createPost textarea {
-  width: 100%;
-  border: none;
-  resize: none;
-  outline: none;
-  min-height: 55px;
-  font-size: 16px;
+.liked{color:#ff3e91}
+
+.comment{
+  margin-top:9px;
+  padding:10px 12px;
+  border-radius:13px;
+  background:#f8f6fd;
 }
 
-.post {
-  background: white;
-  padding: 18px;
-  border-radius: 22px;
-  margin-bottom: 20px;
-  box-shadow: 0 5px 25px #392d5910;
+.reply{
+  margin-left:25px;
+  margin-top:6px;
+  padding-left:10px;
+  border-left:3px solid #9b7cff;
+  color:#625b75;
 }
 
-.postHeader {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+.commentBox{
+  display:flex;
+  gap:7px;
+  margin-top:12px;
 }
 
-.postText {
-  margin: 17px 0;
-  font-size: 17px;
-  line-height: 1.45;
+.commentBox input{
+  flex:1;
+  border:2px solid #eeeaf7;
+  border-radius:12px;
+  padding:10px;
 }
+
+/* ================= CREATOR ================= */
 
-.fakeVideo {
-  min-height: 310px;
-  border-radius: 18px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 70px;
-  margin: 12px 0;
-  background: linear-gradient(135deg, #ffcae6, #cfc8ff, #bdefff);
-  position: relative;
-  overflow: hidden;
+.creator{padding:20px}
+
+.editorPreview{
+  width:270px;
+  height:460px;
+  margin:15px auto;
+  border-radius:25px;
+  overflow:hidden;
+  position:relative;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:linear-gradient(135deg,#ffc7e4,#cfc8ff,#bcecff);
 }
 
-.fakeVideo span {
-  font-size: 20px;
-  position: absolute;
-  bottom: 15px;
-  left: 15px;
-  background: #0008;
-  color: white;
-  padding: 7px 12px;
-  border-radius: 12px;
+.previewEmoji{
+  font-size:90px;
+  z-index:2;
 }
 
-.postActions {
-  display: flex;
-  gap: 18px;
-  border-top: 1px solid #eeeaf5;
-  padding-top: 13px;
+.previewText{
+  position:absolute;
+  color:white;
+  font-weight:700;
+  font-size:28px;
+  text-shadow:0 3px 7px #000;
+  z-index:3;
 }
 
-.action {
-  background: transparent;
-  font-size: 15px;
-  color: #625c76;
+.toolRow{
+  display:flex;
+  flex-wrap:wrap;
+  gap:7px;
+  margin:9px 0 17px;
 }
 
-.action.liked {
-  color: #ff3d91;
+.tool{
+  padding:9px 12px;
+  border-radius:12px;
+  background:#efebff;
 }
 
-.comment {
-  background: #f8f6fd;
-  padding: 10px 12px;
-  border-radius: 13px;
-  margin-top: 9px;
+.tool:hover{
+  background:#ded6ff;
 }
+
+/* FILTERS */
 
-.commentReply {
-  margin-left: 25px;
-  margin-top: 6px;
-  padding: 8px 10px;
-  border-left: 3px solid #b08cff;
-  color: #625c76;
-  font-size: 14px;
+.filter-normal{filter:none}
+.filter-vintage{filter:sepia(.65) contrast(1.1)}
+.filter-gray{filter:grayscale(1)}
+.filter-cursed{filter:hue-rotate(120deg) saturate(2)}
+.filter-dream{filter:brightness(1.15) saturate(.7)}
+.filter-radioactive{filter:hue-rotate(250deg) saturate(3)}
+
+/* EFFECTS */
+
+.shake{animation:shake .18s infinite}
+.spin{animation:spin 2s linear infinite}
+.bounce{animation:bounce .7s infinite alternate}
+.zoom{animation:zoom .8s infinite alternate}
+.glitch{animation:glitch .12s infinite}
+
+@keyframes shake{
+  0%{transform:translate(0)}
+  25%{transform:translate(7px,-4px)}
+  50%{transform:translate(-6px,5px)}
+  75%{transform:translate(5px,3px)}
+  100%{transform:translate(0)}
 }
 
-.commentBox {
-  display: flex;
-  gap: 7px;
-  margin-top: 12px;
+@keyframes spin{
+  to{transform:rotate(360deg)}
 }
 
-.commentBox input {
-  flex: 1;
-  padding: 10px;
-  border-radius: 12px;
-  border: 2px solid #eeeaf8;
+@keyframes bounce{
+  from{transform:translateY(15px)}
+  to{transform:translateY(-15px)}
 }
 
-/* RIGHT SIDE */
+@keyframes zoom{
+  from{transform:scale(.8)}
+  to{transform:scale(1.2)}
+}
 
-.rightCard {
-  background: white;
-  border-radius: 20px;
-  padding: 17px;
-  margin-bottom: 17px;
-  box-shadow: 0 5px 25px #392d5910;
+@keyframes glitch{
+  0%{transform:translate(2px)}
+  50%{transform:translate(-4px)}
+  100%{transform:translate(3px)}
 }
+
+/* ================= PROFILE ================= */
 
-.rightCard h3 {
-  margin-top: 0;
+.profilePage{overflow:hidden}
+
+.banner{
+  height:150px;
+  background:linear-gradient(120deg,#ffc5e4,#c8c6ff,#b8eaff);
 }
 
-/* PROFILE */
+.profileInfo{padding:20px}
 
-.profilePage {
-  background: white;
-  border-radius: 25px;
-  overflow: hidden;
-  box-shadow: 0 5px 25px #392d5910;
+.bigAvatar{
+  width:88px;
+  height:88px;
+  margin-top:-60px;
+  border-radius:50%;
+  background:white;
+  border:5px solid white;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:43px;
 }
 
-.profileBanner {
-  height: 150px;
-  background: linear-gradient(120deg, #ffc5e4, #c7c5ff, #b9eaff);
+.stats{
+  display:flex;
+  gap:30px;
+  margin:15px 0;
 }
 
-.profileInfo {
-  padding: 20px;
+.stat b{
+  display:block;
+  font-size:20px;
 }
 
-.bigAvatar {
-  width: 85px;
-  height: 85px;
-  border-radius: 50%;
-  background: #fff;
-  margin-top: -60px;
-  border: 5px solid white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 42px;
+.stat span{
+  color:#8d879b;
+  font-size:13px;
 }
+
+/* ================= RIGHT ================= */
 
-.profileStats {
-  display: flex;
-  gap: 25px;
-  margin: 15px 0;
+.rightCard{
+  padding:17px;
+  margin-bottom:17px;
 }
 
-.stat b {
-  display: block;
-  font-size: 19px;
+/* ================= 67 BUTTON ================= */
+
+.danger67{
+  position:fixed;
+  bottom:13px;
+  right:13px;
+  width:48px;
+  height:48px;
+  border-radius:50%;
+  background:#171321;
+  color:white;
+  font-size:17px;
+  opacity:.08;
+  transition:.2s;
+  z-index:999;
 }
 
-.stat span {
-  color: #8a849a;
-  font-size: 13px;
+.danger67:hover{
+  opacity:1;
+  transform:rotate(12deg) scale(1.1);
 }
 
-/* SEARCH */
+/* ================= HACK SCREEN ================= */
 
-.searchResult {
-  background: white;
-  padding: 15px;
-  border-radius: 18px;
-  margin-bottom: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+#hackScreen{
+  position:fixed;
+  inset:0;
+  background:#09070d;
+  color:#ff315e;
+  z-index:9999;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  overflow:hidden;
 }
-
-/* CREATOR */
 
-.creator {
-  background: white;
-  padding: 20px;
-  border-radius: 24px;
-  box-shadow: 0 5px 25px #392d5910;
+.hackContent{
+  width:min(600px,90%);
 }
 
-.editorPreview {
-  height: 450px;
-  max-width: 270px;
-  margin: 15px auto;
-  border-radius: 25px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  overflow: hidden;
-  background: linear-gradient(135deg, #ffd0e9, #d2ccff);
+.hackTitle{
+  font-size:60px;
+  font-weight:700;
+  animation:glitch .12s infinite;
 }
 
-.previewEmoji {
-  font-size: 90px;
+.hackText{
+  color:#eee;
+  font-size:20px;
 }
 
-.previewText {
-  position: absolute;
-  color: white;
-  font-size: 27px;
-  font-weight: 700;
-  text-shadow: 0 2px 6px #000;
-  cursor: move;
-  user-select: none;
+.hackBar{
+  width:100%;
+  height:25px;
+  border:2px solid #ff315e;
+  margin:20px 0;
 }
 
-.toolRow {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 7px;
-  margin: 10px 0;
+.hackFill{
+  height:100%;
+  width:0;
+  background:#ff315e;
+  animation:hackload 3s forwards;
 }
 
-.tool {
-  padding: 9px 12px;
-  border-radius: 12px;
-  background: #f0edff;
+@keyframes hackload{
+  to{width:100%}
 }
 
-.tool.selected {
-  background: #8667ff;
-  color: white;
+/* ================= CAPTCHA ================= */
+
+#captchaScreen{
+  position:fixed;
+  inset:0;
+  background:#f5f1ff;
+  z-index:9000;
+  display:flex;
+  align-items:center;
+  justify-content:center;
 }
 
-.filter-normal {
-  filter: none;
+.captchaBox{
+  width:min(500px,92%);
+  background:white;
+  padding:30px;
+  border-radius:28px;
+  box-shadow:0 20px 70px #33245b25;
+  text-align:center;
 }
 
-.filter-vintage {
-  filter: sepia(.6) contrast(1.1);
+.captchaGrid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:10px;
+  margin:20px 0;
 }
 
-.filter-gray {
-  filter: grayscale(1);
+.captchaItem{
+  aspect-ratio:1;
+  border:3px solid transparent;
+  border-radius:17px;
+  background:#f2effa;
+  font-size:40px;
 }
 
-.filter-cursed {
-  filter: hue-rotate(100deg) saturate(2);
+.captchaItem.selected{
+  border-color:#8063ff;
+  background:#ddd6ff;
 }
+
+/* ================= CRAZY VIDEO FEED ================= */
 
-.filter-dream {
-  filter: brightness(1.1) saturate(.7);
+.crazyFeed{
+  display:flex;
+  flex-direction:column;
+  gap:20px;
 }
 
-/* MODAL */
+.crazyVideo{
+  height:560px;
+  border-radius:25px;
+  position:relative;
+  overflow:hidden;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  box-shadow:0 10px 35px #33245b20;
+}
 
-.modal {
-  position: fixed;
-  inset: 0;
-  background: #16122299;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 100;
+.crazyEmoji{
+  font-size:130px;
+  z-index:2;
 }
 
-.modalBox {
-  width: min(500px, 92%);
-  max-height: 90vh;
-  overflow-y: auto;
-  background: white;
-  padding: 25px;
-  border-radius: 25px;
+.crazyText{
+  position:absolute;
+  top:30px;
+  left:20px;
+  right:20px;
+  text-align:center;
+  font-size:30px;
+  font-weight:700;
+  color:white;
+  text-shadow:0 3px 8px #000;
+  z-index:3;
 }
 
-.close {
-  float: right;
-  background: #f0edff;
-  width: 35px;
-  height: 35px;
-  border-radius: 50%;
+.crazyBottom{
+  position:absolute;
+  bottom:20px;
+  left:20px;
+  right:20px;
+  color:white;
+  z-index:4;
 }
 
-/* TOAST */
+.crazyActions{
+  position:absolute;
+  right:15px;
+  bottom:70px;
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+  z-index:5;
+}
 
-#toast {
-  position: fixed;
-  bottom: 25px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: #29243d;
-  color: white;
-  padding: 13px 20px;
-  border-radius: 15px;
-  opacity: 0;
-  pointer-events: none;
-  transition: .3s;
-  z-index: 200;
+.crazyAction{
+  width:55px;
+  height:55px;
+  border-radius:50%;
+  background:#0009;
+  color:white;
+  font-size:20px;
 }
 
-#toast.show {
-  opacity: 1;
+/* ================= TOAST ================= */
+
+#toast{
+  position:fixed;
+  bottom:25px;
+  left:50%;
+  transform:translateX(-50%);
+  background:#29233d;
+  color:white;
+  padding:13px 20px;
+  border-radius:15px;
+  opacity:0;
+  pointer-events:none;
+  transition:.3s;
+  z-index:12000;
 }
+
+#toast.show{opacity:1}
 
-/* MOBILE */
+/* ================= MOBILE ================= */
 
-@media(max-width: 950px) {
-  .layout {
-    grid-template-columns: 80px minmax(300px, 650px);
+@media(max-width:950px){
+  .layout{
+    grid-template-columns:80px minmax(300px,650px);
   }
 
-  .sidebar {
-    text-align: center;
+  .rightSide{display:none}
+
+  .navBtn{
+    font-size:0;
+    text-align:center;
   }
 
-  .navBtn {
-    text-align: center;
-    font-size: 0;
+  .navBtn::first-letter{
+    font-size:22px;
   }
 
-  .navBtn::first-letter {
-    font-size: 22px;
-  }
-
-  .profileMini,
-  .rightSide {
-    display: none;
-  }
+  .profileMini{display:none}
 }
 
-@media(max-width: 650px) {
-  .topbar {
-    padding: 0 10px;
+@media(max-width:650px){
+  .sidebar{display:none}
+
+  .layout{
+    display:block;
+    padding:12px;
   }
 
-  .topLogo {
-    font-size: 20px;
-  }
+  .search{width:140px}
 
-  .search {
-    width: 130px;
-  }
+  .topbar{padding:0 10px}
 
-  .layout {
-    display: block;
-    padding: 12px;
-  }
-
-  .sidebar {
-    display: none;
-  }
+  .topLogo{font-size:20px}
 }
 </style>
 </head>
 
 <body>
 
-<!-- LOGIN -->
+<!-- ================= LOGIN ================= -->
 
 <div id="loginScreen">
+
   <div class="loginBox">
+
     <div class="logo">scrolltok™</div>
-    <p>instagram but slightly more questionable.</p>
+
+    <p>the normal social media website™</p>
 
     <input id="loginName" class="input" placeholder="username">
     <input id="loginPass" class="input" type="password" placeholder="password">
 
     <button class="primary" onclick="login()">log in</button>
 
-    <button class="secondary" style="margin-top:12px" onclick="showSignup()">
+    <button class="secondary" style="margin-top:12px"
+      onclick="createAccountPrompt()">
       create account
     </button>
 
-    <p style="font-size:12px;margin-top:20px">
-      demo accounts are saved only in this browser.
-    </p>
   </div>
+
 </div>
 
-<!-- APP -->
+
+<!-- ================= APP ================= -->
 
 <div id="app" class="hidden">
 
   <div class="topbar">
+
     <div class="topLogo">scrolltok™</div>
 
     <input
       class="search"
       id="searchInput"
-      placeholder="🔎 search people..."
+      placeholder="🔎 search..."
       oninput="searchUsers()"
     >
 
@@ -638,655 +737,701 @@ button {
       <button class="iconBtn" onclick="showNotifications()">🔔</button>
       <button class="iconBtn" onclick="showPage('profile')">👤</button>
     </div>
+
   </div>
+
 
   <div class="layout">
 
     <aside class="sidebar">
 
-      <button class="navBtn active" onclick="showPage('home')">🏠 home</button>
+      <button class="navBtn" onclick="showPage('home')">🏠 home</button>
       <button class="navBtn" onclick="showPage('search')">🔎 search</button>
+      <button class="navBtn" onclick="showPage('crazy')">🔥 crazy feed</button>
       <button class="navBtn" onclick="showPage('creator')">🎬 create</button>
       <button class="navBtn" onclick="showPage('friends')">👥 friends</button>
       <button class="navBtn" onclick="showPage('profile')">👤 profile</button>
 
       <div class="profileMini">
+
         <div class="userRow">
           <div class="avatar" id="miniAvatar">😺</div>
+
           <div>
             <div class="username" id="miniName"></div>
             <div class="handle" id="miniHandle"></div>
           </div>
         </div>
+
       </div>
 
-      <button class="navBtn" onclick="logout()" style="margin-top:10px">
-        🚪 log out
-      </button>
+      <button class="navBtn" onclick="logout()">🚪 log out</button>
 
     </aside>
 
+
     <main id="mainContent"></main>
+
 
     <aside class="rightSide">
 
       <div class="rightCard">
+
         <h3>✨ suggested</h3>
+
         <div id="suggestions"></div>
+
       </div>
 
       <div class="rightCard">
+
         <h3>🔥 trending</h3>
-        <p>#catsBeingSuspicious</p>
-        <p>#whyDidHeDoThat</p>
+
+        <p>#catEmergency</p>
         <p>#bananaIncident</p>
-        <p>#schoolTomorrow</p>
+        <p>#whyIsHeSpinning</p>
+        <p>#67</p>
+
       </div>
 
     </aside>
 
   </div>
+
 </div>
+
+
+<!-- 67 BUTTON -->
+
+<button class="danger67" onclick="activate67()">67</button>
+
+
+<!-- HACK SCREEN -->
+
+<div id="hackScreen" class="hidden">
+
+  <div class="hackContent">
+
+    <div class="hackTitle">YOU GOT 67'D</div>
+
+    <div class="hackText">
+      suspicious activity detected.
+      <br><br>
+      definitely not because you pressed a tiny button.
+    </div>
+
+    <div class="hackBar">
+      <div class="hackFill"></div>
+    </div>
+
+    <div style="color:#777">
+      deleting absolutely nothing...
+    </div>
+
+  </div>
+
+</div>
+
+
+<!-- CAPTCHA -->
+
+<div id="captchaScreen" class="hidden">
+
+  <div class="captchaBox">
+
+    <h2>🤖 security check</h2>
+
+    <p>prove you're not a suspicious little internet goblin.</p>
+
+    <h3>click all the 🍌</h3>
+
+    <div class="captchaGrid" id="captchaGrid"></div>
+
+    <button class="primary" onclick="checkCaptcha()">
+      verify me
+    </button>
+
+  </div>
+
+</div>
+
 
 <div id="toast"></div>
 
-<!-- SIGNUP MODAL -->
-
-<div id="signupModal" class="modal hidden">
-  <div class="modalBox">
-    <button class="close" onclick="closeModal('signupModal')">×</button>
-
-    <h2>create your account ✨</h2>
-
-    <input id="signupName" class="input" placeholder="username">
-    <input id="signupPass" class="input" type="password" placeholder="password">
-
-    <button class="primary" onclick="createAccount()">
-      create account
-    </button>
-  </div>
-</div>
 
 <script>
 
-/* =========================
-   DATA
-========================= */
+/* ================= DATA ================= */
 
 let db = JSON.parse(localStorage.getItem("scrolltokDB")) || {
-  users: [
+
+  users:[
     {
-      username: "orii",
-      password: "cats",
-      emoji: "🐱",
-      bio: "professional internet creature",
-      friends: ["orii"],
-      posts: []
+      username:"orii",
+      password:"cats",
+      emoji:"🐱",
+      bio:"professional internet creature",
+      friends:["orii"]
     },
     {
-      username: "gerald_the_goober",
-      password: "lion",
-      emoji: "🦁",
-      bio: "i have no idea what i'm doing",
-      friends: [],
-      posts: []
+      username:"gerald_the_goober",
+      password:"lion",
+      emoji:"🦁",
+      bio:"i don't know what's happening",
+      friends:[]
     },
     {
-      username: "bananafan9000",
-      password: "banana",
-      emoji: "🍌",
-      bio: "banana enthusiast",
-      friends: [],
-      posts: []
+      username:"bananafan9000",
+      password:"banana",
+      emoji:"🍌",
+      bio:"banana enthusiast",
+      friends:[]
     },
     {
-      username: "tiny_pickle",
-      password: "pickle",
-      emoji: "🥒",
-      bio: "small but powerful",
-      friends: [],
-      posts: []
+      username:"tiny_pickle",
+      password:"pickle",
+      emoji:"🥒",
+      bio:"small but powerful",
+      friends:[]
     }
   ],
-  posts: [
+
+  posts:[
     {
-      id: 1,
-      username: "gerald_the_goober",
-      text: "i tried to make a sandwich and somehow created a national emergency",
-      emoji: "🥪",
-      likes: 12,
-      likedBy: [],
-      comments: [
-        {
-          user: "bananafan9000",
-          text: "how do you even do that 😭",
-          reply: "gerald_the_goober",
-          replyText: "i don't know either bro"
-        }
-      ]
+      id:1,
+      username:"gerald_the_goober",
+      text:"i attempted to make a sandwich.",
+      emoji:"🥪",
+      likes:14,
+      likedBy:[],
+      comments:[]
     },
     {
-      id: 2,
-      username: "bananafan9000",
-      text: "the banana has been located.",
-      emoji: "🍌",
-      likes: 31,
-      likedBy: [],
-      comments: [
-        {
-          user: "tiny_pickle",
-          text: "WHERE",
-          reply: "bananafan9000",
-          replyText: "under the couch 😭"
-        }
-      ]
+      id:2,
+      username:"bananafan9000",
+      text:"the banana has been located.",
+      emoji:"🍌",
+      likes:32,
+      likedBy:[],
+      comments:[]
     },
     {
-      id: 3,
-      username: "orii",
-      text: "my cat looked at me for 7 seconds and then walked away",
-      emoji: "🐈",
-      likes: 48,
-      likedBy: [],
-      comments: []
+      id:3,
+      username:"orii",
+      text:"my cat stared at me and then walked away.",
+      emoji:"🐈",
+      likes:51,
+      likedBy:[],
+      comments:[]
     }
   ],
-  notifications: []
+
+  notifications:[]
 };
 
-let currentUser = localStorage.getItem("scrolltokCurrent");
+let currentUser=localStorage.getItem("scrolltokCurrent");
 
-function saveDB() {
-  localStorage.setItem("scrolltokDB", JSON.stringify(db));
+function save(){
+  localStorage.setItem("scrolltokDB",JSON.stringify(db));
 }
 
-function getUser(name) {
-  return db.users.find(u => u.username === name);
+function getUser(name){
+  return db.users.find(u=>u.username===name);
 }
 
-/* =========================
-   LOGIN
-========================= */
+function random(arr){
+  return arr[Math.floor(Math.random()*arr.length)];
+}
 
-function login() {
 
-  const name = document.getElementById("loginName").value.trim();
-  const pass = document.getElementById("loginPass").value;
+/* ================= LOGIN ================= */
 
-  const user = getUser(name);
+function login(){
 
-  if (!user || user.password !== pass) {
-    alert("wrong username or password 😭");
+  let name=document.getElementById("loginName").value.trim();
+  let pass=document.getElementById("loginPass").value;
+
+  let user=getUser(name);
+
+  if(!user || user.password!==pass){
+    alert("wrong username/password 😭");
     return;
   }
 
-  currentUser = name;
-  localStorage.setItem("scrolltokCurrent", name);
+  currentUser=name;
+
+  localStorage.setItem("scrolltokCurrent",name);
 
   startApp();
 }
 
-function showSignup() {
-  document.getElementById("signupModal").classList.remove("hidden");
-}
+function createAccountPrompt(){
 
-function createAccount() {
+  let name=prompt("choose a username:");
 
-  const name = document.getElementById("signupName").value.trim();
-  const pass = document.getElementById("signupPass").value;
+  if(!name)return;
 
-  if (!name || !pass) {
-    alert("you need a username AND password 😭");
+  if(getUser(name)){
+    alert("that username already exists 😭");
     return;
   }
 
-  if (db.users.some(u => u.username.toLowerCase() === name.toLowerCase())) {
-    alert("that username is already taken!");
-    return;
-  }
+  let pass=prompt("choose a password:");
+
+  if(!pass)return;
 
   db.users.push({
-    username: name,
-    password: pass,
-    emoji: "😎",
-    bio: "new here 👋",
-    friends: [name],
-    posts: []
+    username:name,
+    password:pass,
+    emoji:"😎",
+    bio:"new here 👋",
+    friends:[name]
   });
 
-  saveDB();
+  save();
 
-  currentUser = name;
-  localStorage.setItem("scrolltokCurrent", name);
+  currentUser=name;
 
-  closeModal("signupModal");
+  localStorage.setItem("scrolltokCurrent",name);
+
   startApp();
 }
 
-function logout() {
-  currentUser = null;
+function logout(){
+
+  currentUser=null;
+
   localStorage.removeItem("scrolltokCurrent");
 
   document.getElementById("app").classList.add("hidden");
   document.getElementById("loginScreen").classList.remove("hidden");
 }
 
-/* =========================
-   START APP
-========================= */
 
-function startApp() {
+/* ================= START ================= */
+
+function startApp(){
 
   document.getElementById("loginScreen").classList.add("hidden");
   document.getElementById("app").classList.remove("hidden");
 
-  updateMiniProfile();
-  showPage("home");
+  updateMini();
+
   renderSuggestions();
+
+  showPage("crazy");
 }
 
-function updateMiniProfile() {
+function updateMini(){
 
-  const user = getUser(currentUser);
+  let u=getUser(currentUser);
 
-  if (!user) return;
+  if(!u)return;
 
-  document.getElementById("miniName").textContent = user.username;
-  document.getElementById("miniHandle").textContent = "@" + user.username;
-  document.getElementById("miniAvatar").textContent = user.emoji;
+  document.getElementById("miniName").textContent=u.username;
+  document.getElementById("miniHandle").textContent="@"+u.username;
+  document.getElementById("miniAvatar").textContent=u.emoji;
 }
 
-/* =========================
-   NAVIGATION
-========================= */
 
-function showPage(page) {
+/* ================= NAVIGATION ================= */
 
-  const main = document.getElementById("mainContent");
+function showPage(page){
 
-  if (page === "home") renderHome();
-  if (page === "search") renderSearchPage();
-  if (page === "creator") renderCreator();
-  if (page === "friends") renderFriends();
-  if (page === "profile") renderProfile(currentUser);
+  if(page==="home")renderHome();
+  if(page==="search")renderSearch();
+  if(page==="crazy")renderCrazyFeed();
+  if(page==="creator")renderCreator();
+  if(page==="friends")renderFriends();
+  if(page==="profile")renderProfile(currentUser);
 }
 
-/* =========================
-   HOME
-========================= */
 
-function renderHome() {
+/* ================= HOME ================= */
 
-  let html = `
+function renderHome(){
+
+  let html=`
+
     <div class="storyRow">
-      ${db.users.map(u => `
-        <div class="story" onclick="renderProfile('${u.username}')">
+
+      ${db.users.map(u=>`
+
+        <div class="story"
+          onclick="renderProfile('${u.username}')">
+
           <div class="avatar">${u.emoji}</div>
           ${u.username}
+
         </div>
+
       `).join("")}
+
     </div>
+
 
     <div class="createPost">
-      <textarea id="newPostText" placeholder="what questionable thing happened today?"></textarea>
-      <button class="primary" onclick="makePost()">post something</button>
+
+      <textarea
+        id="newPost"
+        placeholder="what happened today?">
+      </textarea>
+
+      <button class="primary" onclick="makePost()">
+        post
+      </button>
+
     </div>
+
   `;
 
-  db.posts.slice().reverse().forEach(post => {
-    html += renderPost(post);
+  db.posts.slice().reverse().forEach(p=>{
+    html+=renderPost(p);
   });
 
-  document.getElementById("mainContent").innerHTML = html;
+  document.getElementById("mainContent").innerHTML=html;
 }
 
-function renderPost(post) {
 
-  const user = getUser(post.username);
-  const liked = post.likedBy.includes(currentUser);
+function renderPost(p){
+
+  let u=getUser(p.username);
+
+  let liked=p.likedBy.includes(currentUser);
 
   return `
+
     <article class="post">
 
-      <div class="postHeader">
-        <div class="userRow" onclick="renderProfile('${post.username}')"
-             style="cursor:pointer">
+      <div class="userRow">
 
-          <div class="avatar">${user?.emoji || "🙂"}</div>
+        <div class="avatar">${u?.emoji||"🙂"}</div>
 
-          <div>
-            <div class="username">${post.username}</div>
-            <div class="handle">posted something suspicious</div>
-          </div>
+        <div>
+          <div class="username">${p.username}</div>
+          <div class="handle">posted something suspicious</div>
         </div>
 
-        ${post.username === currentUser
-          ? `<button class="secondary" onclick="deletePost(${post.id})">🗑️</button>`
-          : ""}
       </div>
 
-      <div class="postText">${escapeHTML(post.text)}</div>
 
-      <div class="fakeVideo">
-        ${post.emoji || "🎥"}
-        <span>scrolltok original™</span>
+      <div class="postText">
+        ${escapeHTML(p.text)}
       </div>
+
+
+      <div
+        class="video"
+        style="background:${random([
+          "linear-gradient(135deg,#ffb9df,#c7c2ff)",
+          "linear-gradient(135deg,#b8ecff,#d9c6ff)",
+          "linear-gradient(135deg,#ffe0a8,#ffc6e5)",
+          "linear-gradient(135deg,#c5ffd8,#c6d4ff)"
+        ])}"
+      >
+
+        ${p.emoji}
+
+        <div class="videoCaption">
+          scrolltok original™
+        </div>
+
+      </div>
+
 
       <div class="postActions">
 
-        <button class="action ${liked ? "liked" : ""}"
-          onclick="toggleLike(${post.id})">
-          ${liked ? "❤️" : "🤍"} ${post.likes}
+        <button
+          class="action ${liked?"liked":""}"
+          onclick="likePost(${p.id})">
+
+          ${liked?"❤️":"🤍"} ${p.likes}
+
         </button>
 
-        <button class="action"
-          onclick="focusComment(${post.id})">
-          💬 ${post.comments.length}
-        </button>
+        <button
+          class="action"
+          onclick="focusComment(${p.id})">
 
-        <button class="action"
-          onclick="toast('shared with absolutely nobody')">
-          ↗️ share
+          💬 ${p.comments.length}
+
         </button>
 
       </div>
 
-      <div>
-        ${post.comments.map(c => `
-          <div class="comment">
-            <b>${c.user}</b> ${escapeHTML(c.text)}
 
-            ${c.replyText ? `
-              <div class="commentReply">
-                <b>${c.reply}</b> ${escapeHTML(c.replyText)}
+      ${p.comments.map(c=>`
+
+        <div class="comment">
+
+          <b>${c.user}</b>
+          ${escapeHTML(c.text)}
+
+          ${
+            c.replyText
+            ? `
+              <div class="reply">
+                <b>${c.reply}</b>
+                ${escapeHTML(c.replyText)}
               </div>
-            ` : ""}
-          </div>
-        `).join("")}
-      </div>
+            `
+            :""
+          }
+
+        </div>
+
+      `).join("")}
+
 
       <div class="commentBox">
+
         <input
-          id="comment-${post.id}"
-          placeholder="say something..."
-          onkeydown="if(event.key==='Enter') addComment(${post.id})"
+          id="comment-${p.id}"
+          placeholder="comment something..."
+          onkeydown="if(event.key==='Enter')addComment(${p.id})"
         >
-        <button class="secondary"
-          onclick="addComment(${post.id})">send</button>
+
+        <button
+          class="secondary"
+          onclick="addComment(${p.id})">
+          send
+        </button>
+
       </div>
 
     </article>
   `;
 }
 
-function makePost() {
 
-  const text = document.getElementById("newPostText").value.trim();
+function makePost(){
 
-  if (!text) return;
+  let text=document.getElementById("newPost").value.trim();
+
+  if(!text)return;
 
   db.posts.push({
-    id: Date.now(),
-    username: currentUser,
+    id:Date.now(),
+    username:currentUser,
     text,
-    emoji: "📸",
-    likes: 0,
-    likedBy: [],
-    comments: []
+    emoji:"📸",
+    likes:0,
+    likedBy:[],
+    comments:[]
   });
 
-  saveDB();
+  save();
+
   renderHome();
-  toast("posted!! 📸");
+
+  toast("posted 📸");
 }
 
-function deletePost(id) {
 
-  db.posts = db.posts.filter(p => p.id !== id);
+function likePost(id){
 
-  saveDB();
-  renderHome();
-}
+  let p=db.posts.find(x=>x.id===id);
 
-function toggleLike(id) {
+  if(p.likedBy.includes(currentUser)){
 
-  const post = db.posts.find(p => p.id === id);
-  if (!post) return;
+    p.likedBy=p.likedBy.filter(x=>x!==currentUser);
+    p.likes--;
 
-  if (post.likedBy.includes(currentUser)) {
-    post.likedBy = post.likedBy.filter(x => x !== currentUser);
-    post.likes--;
-  } else {
-    post.likedBy.push(currentUser);
-    post.likes++;
+  }else{
 
-    if (post.username !== currentUser) {
-      db.notifications.push(
-        `${currentUser} liked your post ❤️`
-      );
-    }
+    p.likedBy.push(currentUser);
+    p.likes++;
+
   }
 
-  saveDB();
+  save();
+
   renderHome();
 }
 
-function addComment(id) {
 
-  const input = document.getElementById("comment-" + id);
-  const text = input.value.trim();
+function addComment(id){
 
-  if (!text) return;
+  let input=document.getElementById("comment-"+id);
+  let text=input.value.trim();
 
-  const post = db.posts.find(p => p.id === id);
+  if(!text)return;
 
-  post.comments.push({
-    user: currentUser,
+  let p=db.posts.find(x=>x.id===id);
+
+  p.comments.push({
+
+    user:currentUser,
     text,
-    reply: post.username,
-    replyText: generateReply(text, post.text)
+    reply:p.username,
+    replyText:generateReply(text,p.text)
+
   });
 
-  if (post.username !== currentUser) {
-    db.notifications.push(
-      `${currentUser} commented on your post 💬`
-    );
-  }
+  save();
 
-  saveDB();
   renderHome();
 }
 
-function focusComment(id) {
-  setTimeout(() => {
-    document.getElementById("comment-" + id)?.focus();
-  }, 100);
+
+function focusComment(id){
+
+  setTimeout(()=>{
+    document.getElementById("comment-"+id)?.focus();
+  },50);
 }
 
-/* =========================
-   FUNNY REPLIES
-========================= */
 
-function generateReply(comment, postText) {
+/* ================= SMART-ISH COMMENTS ================= */
 
-  const c = comment.toLowerCase();
-  const p = postText.toLowerCase();
+function generateReply(comment,post){
 
-  if (c.includes("cat") || p.includes("cat")) {
-    const replies = [
+  let c=comment.toLowerCase();
+  let p=post.toLowerCase();
+
+  if(c.includes("cat")||p.includes("cat"))
+    return random([
       "he knows exactly what he did 😭",
-      "the cat has refused to comment",
-      "he's currently plotting something",
+      "the cat refuses to comment",
+      "he's plotting something",
       "cat behavior unfortunately"
-    ];
-    return random(replies);
-  }
+    ]);
 
-  if (c.includes("why")) {
+  if(c.includes("banana")||p.includes("banana"))
     return random([
-      "excellent question. i have absolutely no answer.",
+      "the banana remains under investigation 🍌",
+      "banana status: concerning",
+      "we've contacted the banana authorities",
+      "it was definitely not supposed to be there"
+    ]);
+
+  if(c.includes("why"))
+    return random([
+      "excellent question. i have no answer.",
       "i ask myself this every day",
-      "because apparently we make bad decisions here",
-      "honestly i was wondering the same thing 😭"
+      "because apparently this is what we're doing",
+      "honestly i wondered the same thing 😭"
     ]);
-  }
 
-  if (c.includes("where")) {
+  if(c.includes("bro"))
     return random([
-      "probably under the couch",
-      "i lost it approximately 4 minutes ago",
-      "somewhere it definitely should not be",
-      "check behind the suspicious object"
-    ]);
-  }
-
-  if (c.includes("lol") || c.includes("haha") || c.includes("😭")) {
-    return random([
-      "glad someone understands",
-      "this situation is becoming increasingly serious",
-      "i'm choosing to take that as a compliment",
-      "😭 exactly"
-    ]);
-  }
-
-  if (c.includes("bro")) {
-    return random([
-      "bro.",
-      "BRO 😭",
+      "bro 😭",
       "i know bro",
-      "we're cooked"
+      "we're cooked",
+      "BRO."
     ]);
-  }
 
   return random([
-    "real",
     "that's actually so true 😭",
-    "i was thinking the exact same thing",
-    "this is the most reasonable comment i've received today",
-    "noted. adding this to the investigation.",
+    "valid.",
     "you might be onto something",
-    "honestly? valid."
+    "i was thinking the exact same thing",
+    "noted. adding this to the investigation.",
+    "honestly? real."
   ]);
 }
 
-/* =========================
-   SEARCH
-========================= */
 
-function searchUsers() {
+/* ================= SEARCH ================= */
 
-  const query = document.getElementById("searchInput").value.trim().toLowerCase();
+function searchUsers(){
 
-  if (!query) {
+  let q=document.getElementById("searchInput").value.toLowerCase().trim();
+
+  if(!q){
     showPage("home");
     return;
   }
 
-  const matches = db.users.filter(u =>
-    u.username.toLowerCase().includes(query)
+  let results=db.users.filter(u=>
+    u.username.toLowerCase().includes(q)
   );
 
-  document.getElementById("mainContent").innerHTML = `
+  document.getElementById("mainContent").innerHTML=`
+
     <h2>🔎 search results</h2>
 
     ${
-      matches.length
-      ? matches.map(u => searchUserCard(u)).join("")
-      : `<div class="post">no users found 😭</div>`
-    }
-  `;
-}
+      results.length
+      ?results.map(u=>`
 
-function renderSearchPage() {
+        <div class="post">
 
-  document.getElementById("mainContent").innerHTML = `
-    <div class="post">
-      <h2>🔎 find people</h2>
-      <p>type a username in the search bar above!</p>
-      <p>yes, you can search for yourself. no, we won't stop you.</p>
-    </div>
-  `;
-}
+          <div class="userRow">
 
-function searchUserCard(user) {
+            <div class="avatar">${u.emoji}</div>
 
-  const me = getUser(currentUser);
-  const isFriend = me.friends.includes(user.username);
+            <div style="flex:1">
+              <div class="username">${u.username}</div>
+              <div class="handle">${u.bio}</div>
+            </div>
 
-  return `
-    <div class="searchResult">
+            <button
+              class="secondary"
+              onclick="toggleFriend('${u.username}')">
 
-      <div class="userRow"
-        onclick="renderProfile('${user.username}')"
-        style="cursor:pointer">
+              ${getUser(currentUser).friends.includes(u.username)
+                ?"✓ friends"
+                :"➕ friend"}
 
-        <div class="avatar">${user.emoji}</div>
+            </button>
 
-        <div>
-          <div class="username">${user.username}</div>
-          <div class="handle">${user.bio}</div>
+          </div>
+
         </div>
 
-      </div>
+      `).join("")
+      :`<div class="post">nobody found 😭</div>`
+    }
 
-      <button class="${isFriend ? "secondary" : "primary"}"
-        style="width:auto;margin:0"
-        onclick="toggleFriend('${user.username}')">
-
-        ${isFriend ? "✓ friends" : "➕ friend"}
-
-      </button>
-
-    </div>
   `;
 }
 
-/* =========================
-   FRIENDS
-========================= */
 
-function toggleFriend(name) {
+/* ================= FRIENDS ================= */
 
-  const me = getUser(currentUser);
+function toggleFriend(name){
 
-  if (me.friends.includes(name)) {
-    me.friends = me.friends.filter(x => x !== name);
+  let me=getUser(currentUser);
+
+  if(me.friends.includes(name)){
+
+    me.friends=me.friends.filter(x=>x!==name);
+
     toast("unfriended 😔");
-  } else {
+
+  }else{
+
     me.friends.push(name);
 
-    if (name !== currentUser) {
-      db.notifications.push(
-        `${currentUser} became your friend 👥`
-      );
-    }
-
     toast("FRIEND ADDED 👥");
+
   }
 
-  saveDB();
+  save();
 
-  searchUsers();
   renderFriends();
 }
 
-function renderFriends() {
 
-  const me = getUser(currentUser);
+function renderFriends(){
 
-  document.getElementById("mainContent").innerHTML = `
-    <h2>👥 your friends</h2>
+  let me=getUser(currentUser);
+
+  document.getElementById("mainContent").innerHTML=`
+
+    <h2>👥 friends</h2>
 
     ${
-      me.friends.map(name => {
-        const u = getUser(name);
+      me.friends.map(name=>{
+
+        let u=getUser(name);
 
         return `
-          <div class="searchResult">
 
-            <div class="userRow"
-              onclick="renderProfile('${u.username}')"
-              style="cursor:pointer">
+          <div class="post">
+
+            <div class="userRow">
 
               <div class="avatar">${u.emoji}</div>
 
@@ -1297,116 +1442,252 @@ function renderFriends() {
 
             </div>
 
-            <span>👥</span>
-
           </div>
+
         `;
+
       }).join("")
-      || `<div class="post">you have no friends. tragic.</div>`
     }
+
   `;
 }
 
-/* =========================
-   PROFILE
-========================= */
 
-function renderProfile(name) {
+/* ================= PROFILE ================= */
 
-  const user = getUser(name);
+function renderProfile(name){
 
-  if (!user) return;
+  let u=getUser(name);
 
-  const me = getUser(currentUser);
-  const friend = me.friends.includes(name);
+  if(!u)return;
 
-  const posts = db.posts.filter(p => p.username === name);
+  let posts=db.posts.filter(p=>p.username===name);
 
-  document.getElementById("mainContent").innerHTML = `
+  document.getElementById("mainContent").innerHTML=`
 
     <div class="profilePage">
 
-      <div class="profileBanner"></div>
+      <div class="banner"></div>
 
       <div class="profileInfo">
 
-        <div class="bigAvatar">${user.emoji}</div>
+        <div class="bigAvatar">${u.emoji}</div>
 
-        <h2>${user.username}</h2>
-        <div class="handle">@${user.username}</div>
+        <h2>${u.username}</h2>
 
-        <p>${escapeHTML(user.bio)}</p>
+        <div class="handle">@${u.username}</div>
 
-        <div class="profileStats">
+        <p>${escapeHTML(u.bio)}</p>
+
+        <div class="stats">
+
           <div class="stat">
             <b>${posts.length}</b>
             <span>posts</span>
           </div>
 
           <div class="stat">
-            <b>${user.friends.length}</b>
+            <b>${u.friends.length}</b>
             <span>friends</span>
           </div>
+
         </div>
 
-        ${
-          name !== currentUser
-          ? `
-            <button class="primary"
-              style="width:auto"
-              onclick="toggleFriend('${name}')">
-              ${friend ? "✓ friends" : "➕ add friend"}
-            </button>
-          `
-          : `
-            <button class="secondary">
-              ✏️ edit profile
-            </button>
-          `
-        }
-
       </div>
+
     </div>
 
-    <h2 style="margin-top:25px">📸 posts</h2>
+    <h2>📸 posts</h2>
 
     ${
       posts.length
-      ? posts.slice().reverse().map(p => renderPost(p)).join("")
-      : `<div class="post">this person hasn't posted anything yet 👀</div>`
+      ?posts.slice().reverse().map(renderPost).join("")
+      :`<div class="post">nothing here yet 👀</div>`
     }
+
   `;
 }
 
-/* =========================
-   CREATOR
-========================= */
 
-let editor = {
-  filter: "filter-normal",
-  effect: "",
-  text: "",
-  emoji: "🐱"
+/* ================= CRAZY FEED ================= */
+
+const crazyVideos=[
+
+  {
+    emoji:"🐈",
+    text:"WHEN THE CAT REALIZES IT HAS SCHOOL TOMORROW",
+    bg:"linear-gradient(135deg,#ff72b6,#755dff)",
+    effect:"shake"
+  },
+
+  {
+    emoji:"🍌",
+    text:"POV: YOU FOUND THE FORBIDDEN BANANA",
+    bg:"linear-gradient(135deg,#ffe259,#ff8c42)",
+    effect:"spin"
+  },
+
+  {
+    emoji:"🦆",
+    text:"THE DUCK HAS ENTERED THE CHAT",
+    bg:"linear-gradient(135deg,#5edcff,#706bff)",
+    effect:"bounce"
+  },
+
+  {
+    emoji:"💀",
+    text:"ME AFTER HEARING THERE IS HOMEWORK",
+    bg:"linear-gradient(135deg,#202020,#7d3cff)",
+    effect:"glitch"
+  },
+
+  {
+    emoji:"🥒",
+    text:"THE PICKLE HAS DISCOVERED WIFI",
+    bg:"linear-gradient(135deg,#63ff9b,#3b8dff)",
+    effect:"zoom"
+  },
+
+  {
+    emoji:"🦁",
+    text:"GERALD HAS ESCAPED AGAIN",
+    bg:"linear-gradient(135deg,#ff9966,#ff5e62)",
+    effect:"shake"
+  }
+
+];
+
+
+function renderCrazyFeed(){
+
+  document.getElementById("mainContent").innerHTML=`
+
+    <h2>🔥 crazy feed</h2>
+
+    <p>
+      scientifically proven to contain absolutely no normal videos.
+    </p>
+
+    <div class="crazyFeed">
+
+      ${crazyVideos.map((v,i)=>`
+
+        <div
+          class="crazyVideo ${v.effect}"
+          style="background:${v.bg}"
+        >
+
+          <div class="crazyText">
+            ${v.text}
+          </div>
+
+          <div class="crazyEmoji">
+            ${v.emoji}
+          </div>
+
+          <div class="crazyActions">
+
+            <button
+              class="crazyAction"
+              onclick="likeCrazy(this)">
+              ❤️
+            </button>
+
+            <button
+              class="crazyAction"
+              onclick="commentCrazy('${v.text}')">
+              💬
+            </button>
+
+            <button
+              class="crazyAction"
+              onclick="toast('shared with absolutely nobody')">
+              ↗️
+            </button>
+
+          </div>
+
+          <div class="crazyBottom">
+
+            <b>@random_person_${i+67}</b>
+
+            <br>
+
+            this video has no explanation.
+
+          </div>
+
+        </div>
+
+      `).join("")}
+
+    </div>
+
+  `;
+}
+
+
+function likeCrazy(btn){
+
+  btn.textContent=btn.textContent==="❤️"?"💖":"❤️";
+
+  toast("like registered 👍");
+}
+
+
+function commentCrazy(text){
+
+  let comment=prompt("what are you gonna comment?");
+
+  if(!comment)return;
+
+  alert(
+    "@random_person: "+
+    generateReply(comment,text)
+  );
+}
+
+
+/* ================= CREATOR ================= */
+
+let editor={
+  filter:"filter-normal",
+  effect:"",
+  emoji:"🐱",
+  text:""
 };
 
-function renderCreator() {
 
-  document.getElementById("mainContent").innerHTML = `
+function renderCreator(){
+
+  document.getElementById("mainContent").innerHTML=`
 
     <div class="creator">
 
       <h2>🎬 video creator</h2>
-      <p>make the most unnecessarily edited video possible.</p>
 
-      <div id="preview" class="editorPreview ${editor.filter} ${editor.effect}">
-        <div class="previewEmoji">${editor.emoji}</div>
+      <p>
+        make something so over-edited that it becomes art.
+      </p>
+
+
+      <div
+        id="editorPreview"
+        class="editorPreview ${editor.filter} ${editor.effect}"
+      >
+
+        <div class="previewEmoji">
+          ${editor.emoji}
+        </div>
 
         ${
           editor.text
-          ? `<div class="previewText">${escapeHTML(editor.text)}</div>`
-          : ""
+          ?`<div class="previewText">${escapeHTML(editor.text)}</div>`
+          :""
         }
+
       </div>
+
 
       <h3>🎨 filters</h3>
 
@@ -1421,7 +1702,7 @@ function renderCreator() {
         </button>
 
         <button class="tool" onclick="setFilter('filter-gray')">
-          🩶 grayscale
+          🩶 gray
         </button>
 
         <button class="tool" onclick="setFilter('filter-cursed')">
@@ -1432,7 +1713,12 @@ function renderCreator() {
           ☁️ dream
         </button>
 
+        <button class="tool" onclick="setFilter('filter-radioactive')">
+          ☢️ radioactive
+        </button>
+
       </div>
+
 
       <h3>💥 effects</h3>
 
@@ -1450,119 +1736,167 @@ function renderCreator() {
           🏀 bounce
         </button>
 
+        <button class="tool" onclick="setEffect('zoom')">
+          🔍 zoom
+        </button>
+
+        <button class="tool" onclick="setEffect('glitch')">
+          👾 glitch
+        </button>
+
         <button class="tool" onclick="setEffect('')">
           ❌ none
         </button>
 
       </div>
 
+
       <h3>📝 text</h3>
 
       <input
         class="input"
-        id="creatorText"
-        placeholder="type text for your video..."
+        id="editorText"
+        placeholder="text on your video..."
         value="${escapeHTML(editor.text)}"
-        oninput="editor.text=this.value;updatePreview()"
+        oninput="
+          editor.text=this.value;
+          updateEditor();
+        "
       >
+
 
       <h3>😎 subject</h3>
 
       <div class="toolRow">
 
-        ${["🐱","🐶","🦆","🍌","🥒","🦁","💀","🧍"].map(e => `
-          <button class="tool" onclick="setEmoji('${e}')">${e}</button>
+        ${[
+          "🐱","🐶","🦆","🍌",
+          "🥒","🦁","💀","🧍",
+          "🐸","🦖","🦈","🍕"
+        ].map(e=>`
+
+          <button
+            class="tool"
+            onclick="setEmoji('${e}')">
+            ${e}
+          </button>
+
         `).join("")}
 
       </div>
 
-      <button class="primary" onclick="publishVideo()">
-        📤 post this masterpiece
+
+      <button
+        class="primary"
+        onclick="publishVideo()">
+
+        📤 POST THIS MASTERPIECE
+
       </button>
 
     </div>
+
   `;
 }
 
-function setFilter(filter) {
-  editor.filter = filter;
-  updatePreview();
+
+function setFilter(f){
+
+  editor.filter=f;
+
+  updateEditor();
 }
 
-function setEffect(effect) {
-  editor.effect = effect;
-  updatePreview();
+
+function setEffect(e){
+
+  editor.effect=e;
+
+  updateEditor();
 }
 
-function setEmoji(emoji) {
-  editor.emoji = emoji;
-  updatePreview();
+
+function setEmoji(e){
+
+  editor.emoji=e;
+
+  updateEditor();
 }
 
-function updatePreview() {
 
-  const preview = document.getElementById("preview");
+function updateEditor(){
 
-  if (!preview) return;
+  let p=document.getElementById("editorPreview");
 
-  preview.className =
-    "editorPreview " +
-    editor.filter +
-    " " +
+  if(!p)return;
+
+  p.className=
+    "editorPreview "+
+    editor.filter+
+    " "+
     editor.effect;
 
-  preview.innerHTML = `
-    <div class="previewEmoji">${editor.emoji}</div>
+  p.innerHTML=`
+
+    <div class="previewEmoji">
+      ${editor.emoji}
+    </div>
+
     ${
       editor.text
-      ? `<div class="previewText">${escapeHTML(editor.text)}</div>`
-      : ""
+      ?`<div class="previewText">${escapeHTML(editor.text)}</div>`
+      :""
     }
+
   `;
 }
 
-function publishVideo() {
 
-  const text = editor.text || "my incredibly important video";
+function publishVideo(){
 
   db.posts.push({
-    id: Date.now(),
-    username: currentUser,
-    text,
-    emoji: editor.emoji,
-    likes: 0,
-    likedBy: [],
-    comments: []
+
+    id:Date.now(),
+    username:currentUser,
+    text:editor.text||"my masterpiece",
+    emoji:editor.emoji,
+    likes:0,
+    likedBy:[],
+    comments:[]
+
   });
 
-  saveDB();
-
-  editor = {
-    filter: "filter-normal",
-    effect: "",
-    text: "",
-    emoji: "🐱"
-  };
+  save();
 
   toast("VIDEO POSTED 🎬");
 
-  setTimeout(() => showPage("home"), 600);
+  editor={
+    filter:"filter-normal",
+    effect:"",
+    emoji:"🐱",
+    text:""
+  };
+
+  setTimeout(()=>{
+    showPage("home");
+  },600);
 }
 
-/* =========================
-   SUGGESTIONS
-========================= */
 
-function renderSuggestions() {
+/* ================= SUGGESTIONS ================= */
 
-  const me = getUser(currentUser);
+function renderSuggestions(){
 
-  const people = db.users
-    .filter(u => !me.friends.includes(u.username))
-    .slice(0, 3);
+  let me=getUser(currentUser);
 
-  document.getElementById("suggestions").innerHTML =
-    people.map(u => `
+  let people=db.users
+    .filter(u=>!me.friends.includes(u.username))
+    .slice(0,3);
+
+  document.getElementById("suggestions").innerHTML=
+
+    people.map(u=>`
+
       <div class="userRow" style="margin-bottom:12px">
 
         <div class="avatar">${u.emoji}</div>
@@ -1572,118 +1906,163 @@ function renderSuggestions() {
           <div class="handle">${u.bio}</div>
         </div>
 
-        <button class="secondary"
+        <button
+          class="secondary"
           onclick="toggleFriend('${u.username}')">
           +
         </button>
 
       </div>
+
     `).join("");
 }
 
-/* =========================
-   NOTIFICATIONS
-========================= */
 
-function showNotifications() {
+/* ================= NOTIFICATIONS ================= */
 
-  const notes = db.notifications
-    .filter(n => n.startsWith(currentUser) === false)
-    .slice(-10)
-    .reverse();
+function showNotifications(){
+
+  let notes=db.notifications.slice(-10).reverse();
 
   alert(
     notes.length
-    ? "🔔 notifications:\n\n" + notes.join("\n")
-    : "🔔 no notifications!\n\nsuspiciously peaceful..."
+    ?"🔔 notifications:\n\n"+notes.join("\n")
+    :"🔔 no notifications.\n\nsuspiciously peaceful..."
   );
 }
 
-/* =========================
-   HELPERS
-========================= */
 
-function random(arr) {
-  return arr[Math.floor(Math.random() * arr.length)];
+/* ================= 67 ================= */
+
+function activate67(){
+
+  document.getElementById("hackScreen")
+    .classList.remove("hidden");
+
+  setTimeout(()=>{
+
+    document.getElementById("hackScreen")
+      .classList.add("hidden");
+
+    document.getElementById("captchaScreen")
+      .classList.remove("hidden");
+
+    generateCaptcha();
+
+  },3200);
 }
 
-function escapeHTML(text) {
+
+/* ================= CAPTCHA ================= */
+
+let captchaAnswer=[];
+
+
+function generateCaptcha(){
+
+  let grid=document.getElementById("captchaGrid");
+
+  grid.innerHTML="";
+
+  captchaAnswer=[];
+
+  const objects=[
+    "🍌","🐱","🍎",
+    "🍌","🐶","🍕",
+    "🥒","🍌","🦆"
+  ];
+
+  objects.forEach((emoji,i)=>{
+
+    let btn=document.createElement("button");
+
+    btn.className="captchaItem";
+
+    btn.textContent=emoji;
+
+    btn.onclick=()=>{
+
+      btn.classList.toggle("selected");
+
+    };
+
+    grid.appendChild(btn);
+
+  });
+}
+
+
+function checkCaptcha(){
+
+  let items=[
+    ...document.querySelectorAll(".captchaItem")
+  ];
+
+  let selected=items
+    .filter(x=>x.classList.contains("selected"))
+    .map(x=>x.textContent);
+
+  let bananas=items
+    .filter(x=>x.textContent==="🍌")
+    .length;
+
+  let selectedBananas=selected.filter(x=>x==="🍌").length;
+
+  if(
+    selectedBananas===bananas &&
+    selected.length===bananas
+  ){
+
+    document.getElementById("captchaScreen")
+      .classList.add("hidden");
+
+    toast("VERIFIED 🤖");
+
+    showPage("crazy");
+
+  }else{
+
+    alert(
+      "CAPTCHA FAILED 😭\n\n" +
+      "you clicked the wrong things."
+    );
+
+    generateCaptcha();
+
+  }
+}
+
+
+/* ================= HELPERS ================= */
+
+function escapeHTML(text){
 
   return String(text)
-    .replaceAll("&", "&amp;")
-    .replaceAll("<", "&lt;")
-    .replaceAll(">", "&gt;")
-    .replaceAll('"', "&quot;")
-    .replaceAll("'", "&#039;");
+    .replaceAll("&","&amp;")
+    .replaceAll("<","&lt;")
+    .replaceAll(">","&gt;")
+    .replaceAll('"',"&quot;")
+    .replaceAll("'","&#039;");
 }
 
-function closeModal(id) {
-  document.getElementById(id).classList.add("hidden");
-}
 
-let toastTimer;
+function toast(msg){
 
-function toast(message) {
+  let t=document.getElementById("toast");
 
-  const t = document.getElementById("toast");
+  t.textContent=msg;
 
-  t.textContent = message;
   t.classList.add("show");
 
-  clearTimeout(toastTimer);
-
-  toastTimer = setTimeout(() => {
+  setTimeout(()=>{
     t.classList.remove("show");
-  }, 1800);
+  },1800);
 }
 
-/* =========================
-   EFFECTS
-========================= */
 
-const style = document.createElement("style");
+/* ================= AUTO LOGIN ================= */
 
-style.textContent = `
-
-.shake {
-  animation: shake .25s infinite;
-}
-
-.spin {
-  animation: spin 3s linear infinite;
-}
-
-.bounce {
-  animation: bounce 1s infinite alternate;
-}
-
-@keyframes shake {
-  0% { transform: translate(0,0) rotate(0); }
-  25% { transform: translate(4px,-3px) rotate(1deg); }
-  50% { transform: translate(-4px,3px) rotate(-1deg); }
-  75% { transform: translate(3px,2px) rotate(1deg); }
-  100% { transform: translate(0,0) rotate(0); }
-}
-
-@keyframes spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
-
-@keyframes bounce {
-  from { transform: translateY(15px); }
-  to { transform: translateY(-15px); }
-}
-
-`;
-
-document.head.appendChild(style);
-
-/* =========================
-   AUTO LOGIN
-========================= */
-
-if (currentUser && getUser(currentUser)) {
+if(currentUser && getUser(currentUser)){
   startApp();
 }
 
