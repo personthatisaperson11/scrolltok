@@ -2466,24 +2466,32 @@ document.head.appendChild(animationStyle);
    STARTUP
 ========================================================= */
 
-// Opening the file starts at login. Cursed mode only takes effect
-// after the 67 storyline has actually been triggered.
-if (currentUser && users[currentUser]) {
+// ONE-TIME CLEAN START FOR THIS VERSION.
+// Old versions could leave scrolltok_cursed/currentUser in localStorage,
+// which made the site reopen already cursed. This clears only the session
+// and storyline flags; saved accounts/passwords stay untouched.
+if (localStorage.getItem("scrolltok_cleanStart_v2") !== "true") {
+  localStorage.removeItem("scrolltok_currentUser");
+  localStorage.removeItem("scrolltok_cursed");
+  localStorage.removeItem("scrolltok_repairComplete");
+  localStorage.removeItem("scrolltok_logoutTrapUsed");
+  localStorage.removeItem("scrolltok_rating");
+  localStorage.setItem("scrolltok_cleanStart_v2", "true");
 
-  applyCursedMode();
-  updateStoryButton();
-
-  document.getElementById("loginScreen").style.display = "none";
-  document.getElementById("app").style.display = "block";
-
-  showPage("crazy");
-
-} else {
-
-  document.getElementById("loginScreen").style.display = "flex";
-  document.getElementById("app").style.display = "none";
-
+  currentUser = null;
+  cursedMode = false;
+  repairComplete = false;
 }
+
+// The page ALWAYS opens at login after the clean start.
+// Cursed mode is only applied after a user logs in and actually triggers 67.
+document.body.classList.remove("cursed");
+document.getElementById("loginScreen").style.display = "flex";
+document.getElementById("app").style.display = "none";
+updateStoryButton();
+
+// Do not automatically restore a logged-in session here.
+// Logging in is what intentionally starts the app.
 
 </script>
 
