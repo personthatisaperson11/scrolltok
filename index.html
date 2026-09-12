@@ -522,6 +522,249 @@ body.cursed .videoBox {
   filter: hue-rotate(90deg) contrast(1.5);
 }
 
+
+/* =========================
+   ALIEN STORYLINE
+   ========================= */
+
+#whatThisButton {
+  position: fixed;
+  left: 20px;
+  bottom: 20px;
+  z-index: 99998;
+  border: 3px solid #00ffcc;
+  background: #001f1a;
+  color: #00ffcc;
+  padding: 13px 18px;
+  border-radius: 15px;
+  font-weight: 700;
+  font-size: 16px;
+  box-shadow: 0 0 18px #00ffcc;
+  animation: mysteryPulse 1.2s infinite;
+  display: none;
+}
+
+#whatThisButton:hover {
+  transform: scale(1.08) rotate(-1deg);
+  background: #00ffcc;
+  color: #001f1a;
+}
+
+@keyframes mysteryPulse {
+  0%,100% { box-shadow: 0 0 10px #00ffcc; }
+  50% { box-shadow: 0 0 30px #ff00e6; }
+}
+
+#agentCaptchaScreen,
+#alienScreen,
+#glitchEnding,
+#ratingScreen {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 150000;
+}
+
+#agentCaptchaScreen {
+  background:
+    repeating-linear-gradient(
+      0deg,
+      rgba(255,0,230,.12),
+      rgba(255,0,230,.12) 3px,
+      transparent 3px,
+      transparent 7px
+    ),
+    #09000d;
+  align-items: center;
+  justify-content: center;
+}
+
+.agentCaptchaBox,
+.alienBox,
+.ratingBox {
+  width: 520px;
+  max-width: 92%;
+  background: #18001e;
+  color: #ff00e6;
+  border: 3px solid #00ffcc;
+  border-radius: 25px;
+  padding: 30px;
+  text-align: center;
+  box-shadow: 0 0 35px #ff00e6;
+}
+
+.agentCaptchaBox h1,
+.alienBox h1,
+.ratingBox h1 {
+  margin-top: 0;
+}
+
+.agentCaptchaGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin: 20px 0;
+}
+
+.agentCaptchaCell {
+  height: 85px;
+  border: 3px solid #4d2055;
+  border-radius: 14px;
+  background: #25002d;
+  color: white;
+  font-size: 36px;
+  transition: .15s;
+}
+
+.agentCaptchaCell:hover {
+  transform: scale(1.06);
+  border-color: #00ffcc;
+}
+
+.agentCaptchaCell.selected {
+  border-color: #00ffcc;
+  background: #003b32;
+  box-shadow: 0 0 15px #00ffcc;
+}
+
+.storyButton {
+  border: none;
+  border-radius: 13px;
+  padding: 12px 18px;
+  margin: 6px;
+  background: #ff00e6;
+  color: white;
+  font-weight: 700;
+  font-size: 15px;
+}
+
+.storyButton:hover {
+  transform: scale(1.05);
+}
+
+.alien {
+  font-size: 90px;
+  animation: alienFloat 1.5s infinite ease-in-out;
+}
+
+@keyframes alienFloat {
+  0%,100% { transform: translateY(0) rotate(-3deg); }
+  50% { transform: translateY(-12px) rotate(3deg); }
+}
+
+#repairLog {
+  margin: 20px 0;
+  min-height: 170px;
+  max-height: 240px;
+  overflow: auto;
+  text-align: left;
+  background: #09000d;
+  border-radius: 15px;
+  padding: 15px;
+  font-family: monospace;
+  font-size: 14px;
+}
+
+.repairLine {
+  margin: 7px 0;
+}
+
+.repairProgress {
+  height: 18px;
+  background: #35003f;
+  border-radius: 20px;
+  overflow: hidden;
+  border: 2px solid #ff00e6;
+}
+
+.repairProgressFill {
+  width: 0;
+  height: 100%;
+  background: #00ffcc;
+  transition: width .5s;
+}
+
+#glitchEnding {
+  background: #000;
+  overflow: hidden;
+}
+
+.glitchBlock {
+  position: absolute;
+  width: 100%;
+  height: 8px;
+  background: white;
+  opacity: .7;
+  animation: glitchStrip .12s infinite;
+}
+
+@keyframes glitchStrip {
+  0% { transform: translateX(-100%); }
+  50% { transform: translateX(100%); }
+  100% { transform: translateX(-20%); }
+}
+
+#ratingScreen {
+  background: linear-gradient(135deg, #09000d, #25002d);
+  align-items: center;
+  justify-content: center;
+}
+
+.ratingButtons {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin: 20px 0;
+}
+
+.ratingButtons button {
+  width: 55px;
+  height: 55px;
+  border: 2px solid #00ffcc;
+  border-radius: 50%;
+  background: #18001e;
+  color: #00ffcc;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.ratingButtons button:hover {
+  background: #00ffcc;
+  color: #18001e;
+  transform: scale(1.12);
+}
+
+#endingChoice {
+  display: none;
+}
+
+#blackEnding {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 300000;
+  background: #000;
+  color: white;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+}
+
+.cursedCatEnding {
+  font-size: 150px;
+  animation: cursedCat 0.2s infinite;
+}
+
+@keyframes cursedCat {
+  0% { transform: translate(0) scale(1); }
+  25% { transform: translate(8px,-5px) scale(1.05); }
+  50% { transform: translate(-7px,6px) scale(.96); }
+  75% { transform: translate(4px,2px) scale(1.04); }
+  100% { transform: translate(0) scale(1); }
+}
+
 /* =========================
    TOAST
 ========================= */
@@ -750,6 +993,95 @@ body.cursed .videoBox {
 
 <div id="toast"></div>
 
+<!-- =========================
+     WHAT'S THIS BUTTON
+     ========================= -->
+
+<button id="whatThisButton" onclick="startAlienStory()">
+  what’s this... 👽
+</button>
+
+<!-- =========================
+     ALIEN CAPTCHA
+     ========================= -->
+
+<div id="agentCaptchaScreen">
+  <div class="agentCaptchaBox">
+    <h1>👁️ SOMETHING FOUND YOU</h1>
+    <p>before you continue, prove you are not a suspicious banana.</p>
+    <strong>click ALL the 👁️</strong>
+    <div class="agentCaptchaGrid" id="agentCaptchaGrid"></div>
+    <button class="storyButton" onclick="checkAgentCaptcha()">VERIFY 👁️</button>
+  </div>
+</div>
+
+<!-- =========================
+     ALIEN REPAIR STORY
+     ========================= -->
+
+<div id="alienScreen">
+  <div class="alienBox">
+    <div class="alien">👽</div>
+    <h1 id="alienTitle">hello.</h1>
+    <p id="alienText">i am your assigned scrolltok repair agent.</p>
+
+    <div id="repairLog"></div>
+
+    <div class="repairProgress">
+      <div class="repairProgressFill" id="repairProgressFill"></div>
+    </div>
+
+    <button class="storyButton" id="repairButton" onclick="nextRepairStep()">
+      begin extremely normal repair
+    </button>
+  </div>
+</div>
+
+<!-- =========================
+     TEXT-FREE GLITCH
+     ========================= -->
+
+<div id="glitchEnding">
+  <div class="glitchBlock" style="top:8%;"></div>
+  <div class="glitchBlock" style="top:19%;animation-delay:.03s;"></div>
+  <div class="glitchBlock" style="top:31%;animation-delay:.07s;"></div>
+  <div class="glitchBlock" style="top:47%;animation-delay:.02s;"></div>
+  <div class="glitchBlock" style="top:64%;animation-delay:.09s;"></div>
+  <div class="glitchBlock" style="top:81%;animation-delay:.04s;"></div>
+  <div class="glitchBlock" style="top:93%;animation-delay:.11s;"></div>
+</div>
+
+<!-- =========================
+     RATING / ENDING
+     ========================= -->
+
+<div id="ratingScreen">
+  <div class="ratingBox">
+    <h1>RATE MY GAME DID YA ENJOY IT 😭</h1>
+    <p id="ratingPrompt">be honest. the alien is watching.</p>
+
+    <div class="ratingButtons">
+      <button onclick="rateGame(1)">1</button>
+      <button onclick="rateGame(2)">2</button>
+      <button onclick="rateGame(3)">3</button>
+      <button onclick="rateGame(4)">4</button>
+      <button onclick="rateGame(5)">5</button>
+    </div>
+
+    <div id="endingChoice">
+      <h2>wanna go in scrolltok again?</h2>
+      <button class="storyButton" onclick="returnToScrolltok()">YES 😎</button>
+      <button class="storyButton" onclick="badEnding()">NO 💀</button>
+    </div>
+  </div>
+</div>
+
+<div id="blackEnding">
+  <div class="cursedCatEnding">🐈‍⬛</div>
+  <h1>...</h1>
+</div>
+
+
 
 <script>
 
@@ -789,6 +1121,32 @@ let currentUser =
 
 let cursedMode =
   localStorage.getItem("scrolltok_cursed") === "true";
+
+
+let repairComplete =
+  localStorage.getItem("scrolltok_repairComplete") === "true";
+
+let logoutTrapUsed =
+  localStorage.getItem("scrolltok_logoutTrapUsed") === "true";
+
+let alienCaptchaPassed = false;
+let repairStep = 0;
+
+const repairSteps = [
+  "connecting to the extremely illegal banana router...",
+  "removing 14 invisible ducks from the server...",
+  "reinstalling the concept of scrolling...",
+  "asking Gerald why he escaped again...",
+  "patching the 67 dimension...",
+  "turning the WiFi off and on. this is somehow working.",
+  "removing suspicious pickle code...",
+  "teaching the algorithm what a normal video is...",
+  "finding the missing semicolon...",
+  "putting the semicolon back.",
+  "rebooting the alien-powered nonsense engine...",
+  "FINAL CHECK: everything is fixed. probably."
+];
+
 
 
 /* =========================================================
@@ -845,6 +1203,7 @@ function login() {
   document.getElementById("app").style.display = "block";
 
   applyCursedMode();
+  updateStoryButton();
 
   /*
     THIS IS THE IMPORTANT PART:
@@ -911,6 +1270,15 @@ function createAccount() {
 
 function logout() {
 
+  /*
+    AFTER THE ALIEN REPAIR:
+    the first logout attempt is a trap.
+  */
+  if (repairComplete && !logoutTrapUsed) {
+    triggerLogoutTrap();
+    return;
+  }
+
   currentUser = null;
 
   localStorage.removeItem(
@@ -929,6 +1297,8 @@ function logout() {
   document.getElementById("loginUsername").value = "";
 
   document.getElementById("loginPassword").value = "";
+
+  updateStoryButton();
 
 }
 
@@ -1971,6 +2341,8 @@ function applyCursedMode() {
 
   }
 
+  updateStoryButton();
+
 }
 
 
@@ -2095,6 +2467,7 @@ document.head.appendChild(animationStyle);
 ========================================================= */
 
 applyCursedMode();
+updateStoryButton();
 
 
 if (currentUser && users[currentUser]) {
