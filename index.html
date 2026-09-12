@@ -2627,13 +2627,13 @@ document.head.appendChild(animationStyle);
 // Old versions could leave scrolltok_cursed/currentUser in localStorage,
 // which made the site reopen already cursed. This clears only the session
 // and storyline flags; saved accounts/passwords stay untouched.
-if (localStorage.getItem("scrolltok_cleanStart_v2") !== "true") {
+if (localStorage.getItem("scrolltok_cleanStart_v3") !== "true") {
   localStorage.removeItem("scrolltok_currentUser");
   localStorage.removeItem("scrolltok_cursed");
   localStorage.removeItem("scrolltok_repairComplete");
   localStorage.removeItem("scrolltok_logoutTrapUsed");
   localStorage.removeItem("scrolltok_rating");
-  localStorage.setItem("scrolltok_cleanStart_v2", "true");
+  localStorage.setItem("scrolltok_cleanStart_v3", "true");
 
   currentUser = null;
   cursedMode = false;
